@@ -43,7 +43,3 @@ void World::killEntity(unsigned int entityId) {
 	//std::apply([this, entityId](auto&& ... args) { clearEntityInOptVec(args, entityId); }, components);
 	std::apply([this, entityId](auto&& ... args) { (clearEntityInOptVec(args, entityId), ...); }, components);
 }
-
-bool World::isEntityOk(unsigned int entityId, const std::vector<std::vector<Component>>& entities) {
-	return true;
-}

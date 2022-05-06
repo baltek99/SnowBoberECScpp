@@ -74,7 +74,17 @@ public :
         return std::get<OptVec<T>>(components).at(entityId);
     }
 
-    static bool isEntityOk(unsigned int entityId, const std::vector<std::vector<Component>>& entities);
+    template<class ... T>
+    bool isEntityOk(unsigned int entityId) {
+        return (checkComponentHasValue<T>(entityId) && ...);
+    }
+
+    template<class T>
+    bool checkComponentHasValue(unsigned int entityId) {
+        if (entityId > MAX_ENTITIES) return false;
+        OptVec<T>& tComp = std::get<OptVec<T>>(components);
+        return tComp.at(entityId).has_value();
+    }
 
 private :
     template<class T>

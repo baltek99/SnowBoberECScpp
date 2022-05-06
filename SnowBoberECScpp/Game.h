@@ -20,11 +20,17 @@ public:
 
     TexturesManager texturesManager;
 
+    GameState gameState;
 	long gameFrame;
     float deltaTime;
-	GameState gameState;
+    int result;
+    std::string playerName;
 
 	Game();
+
+    void updateWorld();
+
+    void renderWorld();
 
     void createGameWorld(std::string playerName);
 

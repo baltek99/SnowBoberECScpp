@@ -2,6 +2,7 @@
 #include "ConstValues.h"
 #include "RenderSystem.h"
 #include "TexturesManager.h"
+#include <chrono>
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -21,6 +22,10 @@ Game::Game() {
 }
 
 void Game::gameLoop() {
+    int fps = 100;
+    std::chrono::milliseconds timestep = std::chrono::milliseconds(1000 / fps);
+    std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -34,17 +39,90 @@ void Game::gameLoop() {
             case sf::Event::Resized:
                 resizeView(window, view);
                 break;
+            case sf::Event::TextEntered:
+                if (gameState == GameState::MAIN_MENU) {
+                    //textBox.typedOn(event);
+                }
+            case sf::Event::KeyPressed:
+                if (gameState == GameState::GAMEPLAY) {
+                    switch (event.key.code)
+                    {
+                    //case sf::Keyboard::Space:
+                        //player.jump(gameFrame);break;
+                    //case sf::Keyboard::LControl:
+                       // player.crouch();break;
+
+                    }
+                }
+                else if (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER) {
+                    if (event.key.code == sf::Keyboard::Tab) {
+                        gameState = GameState::HIGH_SCORES;
+                        createHighScoreWorld();
+                    }
+                    else if ((gameState == GameState::MAIN_MENU && event.key.code == sf::Keyboard::Enter) || 
+                        gameState == GameState::GAME_OVER) {
+                        gameState = GameState::GAMEPLAY;
+                        createGameWorld(playerName);
+                    }
+                }
+                else if (gameState == GameState::HIGH_SCORES) {
+                    if (event.key.code == sf::Keyboard::Tab) {
+                        gameState = GameState::MAIN_MENU;
+                        createMainMenuWorld();
+                    }
+                }
+                break;
             }
         }
 
         window.clear();
         window.setView(view);
 
-        gameFrame++;
+        std::chrono::milliseconds current_ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
+        if (current_ms > ms + timestep) {
+            gameFrame++;
+            updateWorld();
+            ms = current_ms;
+        }
+
+        renderWorld();
         mainMenuECS.updateRenderSystems(gameFrame, deltaTime);
 
         window.display();
+    }
+}
+
+void Game::updateWorld() {
+    if (gameState == GameState::MAIN_MENU) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
+            //playerName = textBox.getText();
+        }
+        if (playerName != "") {
+            gameState = GameState::GAMEPLAY;
+            createGameWorld(playerName);
+        }
+        mainMenuECS.updateSystems(gameFrame, deltaTime);
+    }
+    else if (gameState == GameState::GAMEPLAY) {
+        gameplayECS.updateSystems(gameFrame, deltaTime);
+
+    }
+    else if (gameState == GameState::GAME_OVER) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+            gameState = GameState::GAMEPLAY;
+            createGameWorld(playerName);
+        }
+        gameOverECS.updateSystems(gameFrame, deltaTime);
+    }
+}
+
+void Game::renderWorld() {
+    switch (gameState) {
+    case GameState::HIGH_SCORES: highScoresECS.updateRenderSystems(gameFrame, deltaTime); break;
+    case GameState::MAIN_MENU: mainMenuECS.updateRenderSystems(gameFrame, deltaTime); break;
+    case GameState::GAMEPLAY: gameplayECS.updateRenderSystems(gameFrame, deltaTime); break;
+    case GameState::GAME_OVER: gameOverECS.updateRenderSystems(gameFrame, deltaTime); break;
     }
 }
 
@@ -56,12 +134,21 @@ void Game::createMainMenuWorld() {
     float skalaX = ConstValues::V_WIDTH / float(size.x);
     float skalaY = ConstValues::V_HEIGHT / float(size.y);
 
-    printf("dane %u %u \n" , size.x, size.y);
     mainMenuECS.addComponentToEntity<Visual>(background, Visual(texturesManager.start, skalaX, skalaY));
     mainMenuECS.addComponentToEntity<Position>(background, Position(0, 0));
 }
 
-void Game::createGameWorld(std::string playerName) {}
+void Game::createGameWorld(std::string playerName) {
+    gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
+
+    Entity background = 0;
+    sf::Vector2u size = texturesManager.background.getSize();
+    float skalaX = ConstValues::V_WIDTH / float(size.x);
+    float skalaY = ConstValues::V_HEIGHT / float(size.y);
+
+    mainMenuECS.addComponentToEntity<Visual>(background, Visual(texturesManager.background, skalaX, skalaY));
+    mainMenuECS.addComponentToEntity<Position>(background, Position(0, 0));
+}
 
 void Game::createGameOverWorld() {}
 
