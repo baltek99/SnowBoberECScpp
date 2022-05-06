@@ -6,8 +6,8 @@ RenderSystem::RenderSystem(sf::RenderWindow& win) : window(win) {
 }
 
 void RenderSystem::update(long gameFrame, float delta, World* world) {
-     World::OptVec<Position> pos =  world->getComponents<Position>();
-     World::OptVec<Visual> vis =  world->getComponents<Visual>();
+     World::OptVec<Position> posVec =  world->getComponents<Position>();
+     World::OptVec<Visual> visVec =  world->getComponents<Visual>();
 
      for (unsigned int entity = 0; entity < world->MAX_ENTITIES; entity++) {
          if (!world->isEntityOk<Position, Visual>(entity)) {
@@ -17,12 +17,12 @@ void RenderSystem::update(long gameFrame, float delta, World* world) {
          //std::optional<Position>& opt_pos = pos.at(entity);
          //std::optional<Visual>& opt_vis = vis.at(entity);
 
-         Position& p = pos.at(entity).value();
-         Visual& v = vis.at(entity).value();
+         Position& pos = posVec.at(entity).value();
+         Visual& vis = visVec.at(entity).value();
 
-         v.sprite.setPosition(p.x + v.sprite.getScale().x * v.sprite.getLocalBounds().width / 2, 
-             p.y + v.sprite.getScale().y * v.sprite.getLocalBounds().height / 2);
+         vis.sprite.setPosition(pos.x + vis.sprite.getScale().x * vis.sprite.getLocalBounds().width / 2, 
+             pos.y + vis.sprite.getScale().y * vis.sprite.getLocalBounds().height / 2);
 
-         window.draw(v.sprite);
+         window.draw(vis.sprite);
      }
 }

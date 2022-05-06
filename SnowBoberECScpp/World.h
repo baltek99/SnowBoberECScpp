@@ -65,12 +65,12 @@ public :
     }
 
     template<class T>
-    OptVec<T> getComponents() {
+    OptVec<T> & getComponents() {
         return std::get<OptVec<T>>(components);
     }
 
     template<class T>
-    std::optional<T> getComponent(unsigned int entityId) {
+    std::optional<T> & getComponent(unsigned int entityId) {
         return std::get<OptVec<T>>(components).at(entityId);
     }
 
@@ -83,6 +83,7 @@ public :
     bool checkComponentHasValue(unsigned int entityId) {
         if (entityId > MAX_ENTITIES) return false;
         OptVec<T>& tComp = std::get<OptVec<T>>(components);
+        //printf("%u val = %d \n", entityId, tComp.at(entityId).has_value());
         return tComp.at(entityId).has_value();
     }
 

@@ -3,6 +3,7 @@
 #include "RenderSystem.h"
 #include "TexturesManager.h"
 #include <chrono>
+#include "MoveSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -45,22 +46,21 @@ void Game::gameLoop() {
                 }
             case sf::Event::KeyPressed:
                 if (gameState == GameState::GAMEPLAY) {
-                    switch (event.key.code)
-                    {
-                    //case sf::Keyboard::Space:
-                        //player.jump(gameFrame);break;
-                    //case sf::Keyboard::LControl:
-                       // player.crouch();break;
+                    //switch (event.key.code)
+                    //{
+                    ////case sf::Keyboard::Space:
+                    //    //player.jump(gameFrame);break;
+                    ////case sf::Keyboard::LControl:
+                    //   // player.crouch();break;
 
-                    }
+                    //}
                 }
                 else if (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER) {
                     if (event.key.code == sf::Keyboard::Tab) {
                         gameState = GameState::HIGH_SCORES;
                         createHighScoreWorld();
                     }
-                    else if ((gameState == GameState::MAIN_MENU && event.key.code == sf::Keyboard::Enter) || 
-                        gameState == GameState::GAME_OVER) {
+                    else if ((gameState == GameState::MAIN_MENU && event.key.code == sf::Keyboard::Enter) || gameState == GameState::GAME_OVER) {
                         gameState = GameState::GAMEPLAY;
                         createGameWorld(playerName);
                     }
@@ -87,7 +87,6 @@ void Game::gameLoop() {
         }
 
         renderWorld();
-        mainMenuECS.updateRenderSystems(gameFrame, deltaTime);
 
         window.display();
     }
@@ -106,7 +105,6 @@ void Game::updateWorld() {
     }
     else if (gameState == GameState::GAMEPLAY) {
         gameplayECS.updateSystems(gameFrame, deltaTime);
-
     }
     else if (gameState == GameState::GAME_OVER) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
@@ -139,6 +137,8 @@ void Game::createMainMenuWorld() {
 }
 
 void Game::createGameWorld(std::string playerName) {
+    gameplayECS.addSystem(std::make_unique<MoveSystem>());
+
     gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 
     Entity background = 0;
@@ -146,8 +146,9 @@ void Game::createGameWorld(std::string playerName) {
     float skalaX = ConstValues::V_WIDTH / float(size.x);
     float skalaY = ConstValues::V_HEIGHT / float(size.y);
 
-    mainMenuECS.addComponentToEntity<Visual>(background, Visual(texturesManager.background, skalaX, skalaY));
-    mainMenuECS.addComponentToEntity<Position>(background, Position(0, 0));
+    gameplayECS.addComponentToEntity<Visual>(background, Visual(texturesManager.background, skalaX, skalaY));
+    gameplayECS.addComponentToEntity<Position>(background, Position(0, 0));
+    gameplayECS.addComponentToEntity<Move>(background, Move(-3));
 }
 
 void Game::createGameOverWorld() {}
