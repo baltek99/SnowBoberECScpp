@@ -50,16 +50,16 @@ public :
 
     void killAllEntities();
 
-    void killEntity(int entityId);
+    void killEntity(unsigned int entityId);
 
     template<class T>
-    void addComponentToEntity(int entityId, T cmp) {
+    void addComponentToEntity(unsigned int entityId, T cmp) {
         OptVec<T>& tComp = std::get<OptVec<T>>(components);
         tComp.at(entityId).emplace(cmp);
     }
 
     template<class T>
-    void removeComponentFromEntity(int entityId) {
+    void removeComponentFromEntity(unsigned int entityId) {
         OptVec<T>& tComp = std::get<OptVec<T>>(components);
         tComp.at(entityId).reset();
     }
@@ -70,11 +70,11 @@ public :
     }
 
     template<class T>
-    std::optional<T> getComponent(int entityId) {
+    std::optional<T> getComponent(unsigned int entityId) {
         return std::get<OptVec<T>>(components).at(entityId);
     }
 
-    static bool isEntityOk(int entityId, const std::vector<std::vector<Component>>& entities);
+    static bool isEntityOk(unsigned int entityId, const std::vector<std::vector<Component>>& entities);
 
 private :
     template<class T>
@@ -83,7 +83,7 @@ private :
     }
 
     template<class T>
-    void clearEntityInOptVec(World::OptVec<T>& vec, int entityId) {
+    void clearEntityInOptVec(World::OptVec<T>& vec, unsigned int entityId) {
         vec.at(entityId).reset();
     }
 };

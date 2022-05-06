@@ -1,25 +1,15 @@
 ﻿#include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "Game.h"
+#include "TexturesManager.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(600, 600), "sfml works!");
-    sf::CircleShape shape(300.f);
-    shape.setFillColor(sf::Color::Green);
+    Game snowBoberGame;
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+    TexturesManager texturesManager;
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+    snowBoberGame.gameLoop();
 
 
     return 0;

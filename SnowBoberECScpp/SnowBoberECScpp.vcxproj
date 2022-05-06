@@ -172,6 +172,7 @@
     <ClCompile Include="ScoreBind.cpp" />
     <ClCompile Include="SnowBoberECScpp.cpp" />
     <ClCompile Include="TextField.cpp" />
+    <ClCompile Include="TexturesManager.cpp" />
     <ClCompile Include="Visual.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -199,6 +200,7 @@
     <ClInclude Include="ScoreBind.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="TextField.h" />
+    <ClInclude Include="TexturesManager.h" />
     <ClInclude Include="Visual.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
