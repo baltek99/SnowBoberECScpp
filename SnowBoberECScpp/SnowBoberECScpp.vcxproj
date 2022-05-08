@@ -162,12 +162,14 @@
     <ClCompile Include="ConstValues.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HighScores.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="Lives.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
     <ClCompile Include="ObstacleGeneratorSystem.cpp" />
     <ClCompile Include="PlayerControlled.cpp" />
+    <ClCompile Include="PlayerControlledSystem.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="ResultBind.cpp" />
@@ -191,6 +193,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HighScores.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Jump.h" />
     <ClInclude Include="Lives.h" />
     <ClInclude Include="Move.h" />
@@ -198,6 +201,7 @@
     <ClInclude Include="ObstacleGeneratorSystem.h" />
     <ClInclude Include="ObstacleType.h" />
     <ClInclude Include="PlayerControlled.h" />
+    <ClInclude Include="PlayerControlledSystem.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="RenderSystem.h" />

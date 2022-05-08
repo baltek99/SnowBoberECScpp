@@ -4,6 +4,7 @@
 #include "GameState.h"
 #include "World.h"
 #include "TexturesManager.h"
+#include "InputManager.h"
 
 class Game
 {
@@ -19,6 +20,7 @@ public:
     World highScoresECS;
 
     TexturesManager texturesManager;
+    InputManager inputManager;
 
     GameState gameState;
 	long gameFrame;
@@ -32,7 +34,7 @@ public:
 
     void renderWorld();
 
-    void createGameWorld(std::string playerName);
+    void createGameWorld(std::string playerName, const sf::Event& event_);
 
     void createGameOverWorld();
 

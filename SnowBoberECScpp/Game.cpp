@@ -1,11 +1,12 @@
 #include "Game.h"
 #include "ConstValues.h"
 #include "RenderSystem.h"
-#include "TexturesManager.h"
 #include <chrono>
+#include "InputManager.h"
 #include "MoveSystem.h"
 #include "BackgroundGeneratorSystem.h"
 #include "ObstacleGeneratorSystem.h"
+#include "PlayerControlledSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -32,8 +33,11 @@ void Game::gameLoop() {
     while (window.isOpen())
     {
         sf::Event event;
+
         while (window.pollEvent(event))
         {
+            inputManager.update(event);
+
             switch (event.type)
             {
             case sf::Event::Closed:
@@ -48,12 +52,13 @@ void Game::gameLoop() {
                 }
             case sf::Event::KeyPressed:
                 if (gameState == GameState::GAMEPLAY) {
+                    continue;
                     //switch (event.key.code)
                     //{
-                    ////case sf::Keyboard::Space:
-                    //    //player.jump(gameFrame);break;
-                    ////case sf::Keyboard::LControl:
-                    //   // player.crouch();break;
+                    //    case sf::Keyboard::Space:
+                    //    player.jump(gameFrame);break;
+                    //    case sf::Keyboard::LControl:
+                    //    player.crouch();break;
 
                     //}
                 }
@@ -64,7 +69,7 @@ void Game::gameLoop() {
                     }
                     else if ((gameState == GameState::MAIN_MENU && event.key.code == sf::Keyboard::Enter) || gameState == GameState::GAME_OVER) {
                         gameState = GameState::GAMEPLAY;
-                        createGameWorld(playerName);
+                        createGameWorld(playerName, event);
                     }
                 }
                 else if (gameState == GameState::HIGH_SCORES) {
@@ -85,6 +90,7 @@ void Game::gameLoop() {
         if (current_ms > ms + timestep) {
             gameFrame++;
             updateWorld();
+            inputManager.update();
             ms = current_ms;
         }
 
@@ -96,23 +102,12 @@ void Game::gameLoop() {
 
 void Game::updateWorld() {
     if (gameState == GameState::MAIN_MENU) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter)) {
-            //playerName = textBox.getText();
-        }
-        if (playerName != "") {
-            gameState = GameState::GAMEPLAY;
-            createGameWorld(playerName);
-        }
         mainMenuECS.updateSystems(gameFrame, deltaTime);
     }
     else if (gameState == GameState::GAMEPLAY) {
         gameplayECS.updateSystems(gameFrame, deltaTime);
     }
     else if (gameState == GameState::GAME_OVER) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-            gameState = GameState::GAMEPLAY;
-            createGameWorld(playerName);
-        }
         gameOverECS.updateSystems(gameFrame, deltaTime);
     }
 }
@@ -138,10 +133,11 @@ void Game::createMainMenuWorld() {
     mainMenuECS.addComponentToEntity<Position>(background, Position(0, 0));
 }
 
-void Game::createGameWorld(std::string playerName) {
+void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addSystem(std::make_unique<MoveSystem>());
     gameplayECS.addSystem(std::make_unique<BackgroundGeneratorSystem>());
     gameplayECS.addSystem(std::make_unique<ObstacleGeneratorSystem>(3, 12, 7, 4, &texturesManager));
+    gameplayECS.addSystem(std::make_unique<PlayerControlledSystem>(event_, &texturesManager, &inputManager));
 
     gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 
@@ -162,13 +158,20 @@ void Game::createGameWorld(std::string playerName) {
     Entity player = 11;
     gameplayECS.addComponentToEntity<Visual>(player, Visual(texturesManager.boberStand, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
     gameplayECS.addComponentToEntity<Position>(player, Position(ConstValues::BOBER_DEFAULT_POSITION_X, ConstValues::BOBER_DEFAULT_POSITION_Y));
+    gameplayECS.addComponentToEntity<Jump>(player, Jump());
+    gameplayECS.addComponentToEntity<PlayerControlled>(player, PlayerControlled(PlayerState::IDLE, playerName));
+    gameplayECS.addComponentToEntity<Collision>(player, Collision(ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT, ObstacleType::PLAYER));
+    gameplayECS.addComponentToEntity<Score>(player, Score(0));
+    //gameplayECS.addComponentToEntity<Lives>(player, Lives(lives));
 }
 
 void Game::createGameOverWorld() {}
 
 void Game::createHighScoreWorld() {}
 
-GameState Game::updateState(GameState state, long frame, float delta) {}
+GameState Game::updateState(GameState state, long frame, float delta) {
+    return GameState::GAMEPLAY;
+}
 
 void Game::resizeView(sf::RenderWindow& window_, sf::View& view_) {
     float wx = float(window_.getSize().x);
