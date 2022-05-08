@@ -1,8 +1,9 @@
-﻿  MoveSystem.cpp
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\MoveSystem.cpp(20,27): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+﻿  BackgroundGeneratorSystem.cpp
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\BackgroundGeneratorSystem.cpp(21,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  RenderSystem.cpp
   Generating code
-  1 of 1230 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  203 of 1203 functions (16.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    138 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SnowBoberECScpp.vcxproj -> C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\x64\Release\SnowBoberECScpp.exe

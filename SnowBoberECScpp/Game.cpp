@@ -4,6 +4,7 @@
 #include "TexturesManager.h"
 #include <chrono>
 #include "MoveSystem.h"
+#include "BackgroundGeneratorSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -129,26 +130,36 @@ void Game::createMainMenuWorld() {
 
     Entity background = 0;
     sf::Vector2u size = texturesManager.start.getSize();
-    float skalaX = ConstValues::V_WIDTH / float(size.x);
-    float skalaY = ConstValues::V_HEIGHT / float(size.y);
+    float scaleX = ConstValues::V_WIDTH / float(size.x);
+    float scaleY = ConstValues::V_HEIGHT / float(size.y);
 
-    mainMenuECS.addComponentToEntity<Visual>(background, Visual(texturesManager.start, skalaX, skalaY));
+    mainMenuECS.addComponentToEntity<Visual>(background, Visual(texturesManager.start, scaleX, scaleY));
     mainMenuECS.addComponentToEntity<Position>(background, Position(0, 0));
 }
 
 void Game::createGameWorld(std::string playerName) {
     gameplayECS.addSystem(std::make_unique<MoveSystem>());
+    gameplayECS.addSystem(std::make_unique<BackgroundGeneratorSystem>());
 
     gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 
-    Entity background = 0;
+    Entity background1 = 0;
     sf::Vector2u size = texturesManager.background.getSize();
-    float skalaX = ConstValues::V_WIDTH / float(size.x);
-    float skalaY = ConstValues::V_HEIGHT / float(size.y);
+    float scaleX = ConstValues::V_WIDTH / float(size.x);
+    float scaleY = ConstValues::V_HEIGHT / float(size.y);
 
-    gameplayECS.addComponentToEntity<Visual>(background, Visual(texturesManager.background, skalaX, skalaY));
-    gameplayECS.addComponentToEntity<Position>(background, Position(0, 0));
-    gameplayECS.addComponentToEntity<Move>(background, Move(-3));
+    gameplayECS.addComponentToEntity<Visual>(background1, Visual(texturesManager.background, scaleX, scaleY));
+    gameplayECS.addComponentToEntity<Position>(background1, Position(0, 0));
+    gameplayECS.addComponentToEntity<Move>(background1, Move(-2)); 
+    
+    Entity background2 = 1;
+    gameplayECS.addComponentToEntity<Visual>(background2, Visual(texturesManager.background, scaleX, scaleY));
+    gameplayECS.addComponentToEntity<Position>(background2, Position(ConstValues::V_WIDTH, 0));
+    gameplayECS.addComponentToEntity<Move>(background2, Move(-2));
+
+    Entity player = 11;
+    gameplayECS.addComponentToEntity<Visual>(player, Visual(texturesManager.boberStand, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
+    gameplayECS.addComponentToEntity<Position>(player, Position(ConstValues::BOBER_DEFAULT_POSITION_X, ConstValues::BOBER_DEFAULT_POSITION_Y));
 }
 
 void Game::createGameOverWorld() {}
