@@ -166,6 +166,7 @@
     <ClCompile Include="Lives.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
+    <ClCompile Include="ObstacleGeneratorSystem.cpp" />
     <ClCompile Include="PlayerControlled.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="Lives.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="MoveSystem.h" />
+    <ClInclude Include="ObstacleGeneratorSystem.h" />
     <ClInclude Include="ObstacleType.h" />
     <ClInclude Include="PlayerControlled.h" />
     <ClInclude Include="PlayerState.h" />

@@ -5,6 +5,7 @@
 #include <chrono>
 #include "MoveSystem.h"
 #include "BackgroundGeneratorSystem.h"
+#include "ObstacleGeneratorSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -140,6 +141,7 @@ void Game::createMainMenuWorld() {
 void Game::createGameWorld(std::string playerName) {
     gameplayECS.addSystem(std::make_unique<MoveSystem>());
     gameplayECS.addSystem(std::make_unique<BackgroundGeneratorSystem>());
+    gameplayECS.addSystem(std::make_unique<ObstacleGeneratorSystem>(3, 12, 7, 4, &texturesManager));
 
     gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 
