@@ -7,6 +7,7 @@
 #include "BackgroundGeneratorSystem.h"
 #include "ObstacleGeneratorSystem.h"
 #include "PlayerControlledSystem.h"
+#include "JumpSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -135,6 +136,7 @@ void Game::createMainMenuWorld() {
 
 void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addSystem(std::make_unique<MoveSystem>());
+    gameplayECS.addSystem(std::make_unique<JumpSystem>(&texturesManager));
     gameplayECS.addSystem(std::make_unique<BackgroundGeneratorSystem>());
     gameplayECS.addSystem(std::make_unique<ObstacleGeneratorSystem>(3, 12, 7, 4, &texturesManager));
     gameplayECS.addSystem(std::make_unique<PlayerControlledSystem>(event_, &texturesManager, &inputManager));

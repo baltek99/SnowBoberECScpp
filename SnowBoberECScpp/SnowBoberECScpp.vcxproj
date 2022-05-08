@@ -164,6 +164,7 @@
     <ClCompile Include="HighScores.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
+    <ClCompile Include="JumpSystem.cpp" />
     <ClCompile Include="Lives.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="SnowBoberECScpp.cpp" />
     <ClCompile Include="TextField.cpp" />
     <ClCompile Include="TexturesManager.cpp" />
+    <ClCompile Include="Util.cpp" />
     <ClCompile Include="Visual.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
@@ -195,6 +197,7 @@
     <ClInclude Include="HighScores.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Jump.h" />
+    <ClInclude Include="JumpSystem.h" />
     <ClInclude Include="Lives.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="MoveSystem.h" />
@@ -211,6 +214,7 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="TextField.h" />
     <ClInclude Include="TexturesManager.h" />
+    <ClInclude Include="Util.h" />
     <ClInclude Include="Visual.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>

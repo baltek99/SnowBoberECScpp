@@ -19,7 +19,7 @@ void PlayerControlledSystem::update(long gameFrame, float delta, World* world) {
     World::OptVec<Jump>& jumpVec = world->getComponents<Jump>();
     World::OptVec<Visual>& visVec = world->getComponents<Visual>();
 
-    for (int entity = 0; entity < world->MAX_ENTITIES; entity++) {
+    for (unsigned int entity = 0; entity < world->MAX_ENTITIES; entity++) {
         if (!world->isEntityOk<PlayerControlled, Position, Visual, Jump>(entity)) {
             continue;
         }
