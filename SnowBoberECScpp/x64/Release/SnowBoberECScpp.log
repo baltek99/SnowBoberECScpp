@@ -1,15 +1,10 @@
-﻿  CollisionSystem.cpp
-  Game.cpp
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(161,83): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(166,117): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(166,78): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(169,114): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(169,80): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-  SpeedSystem.cpp
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\SpeedSystem.cpp(25,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  PlayerCollisionSystem.cpp
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(38,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(41,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(49,38): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
   Generating code
-  22 of 1381 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
-    18 functions were new in current compilation
-    16 functions had inline decision re-evaluated but remain unchanged
+  1 of 1382 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    49 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SnowBoberECScpp.vcxproj -> C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\x64\Release\SnowBoberECScpp.exe

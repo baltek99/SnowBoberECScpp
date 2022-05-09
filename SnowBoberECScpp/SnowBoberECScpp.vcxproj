@@ -170,6 +170,7 @@
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="MoveSystem.cpp" />
     <ClCompile Include="ObstacleGeneratorSystem.cpp" />
+    <ClCompile Include="PlayerCollisionSystem.cpp" />
     <ClCompile Include="PlayerControlled.cpp" />
     <ClCompile Include="PlayerControlledSystem.cpp" />
     <ClCompile Include="Position.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="MoveSystem.h" />
     <ClInclude Include="ObstacleGeneratorSystem.h" />
     <ClInclude Include="ObstacleType.h" />
+    <ClInclude Include="PlayerCollisionSystem.h" />
     <ClInclude Include="PlayerControlled.h" />
     <ClInclude Include="PlayerControlledSystem.h" />
     <ClInclude Include="PlayerState.h" />
