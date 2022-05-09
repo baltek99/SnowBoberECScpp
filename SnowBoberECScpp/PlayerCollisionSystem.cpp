@@ -56,14 +56,13 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
 }
 
 void PlayerCollisionSystem::removeLifeOrKill(World* world, int entity, Lives& liv, int score) {
+    int lifeID = liv.livesIds.at(0).value();
     if (liv.livesIds.size() == 1) {
         //gameScreen.playerResult = score;
         world->killEntity(entity);
-        world->killEntity(liv.livesIds.at(0).value());
-        liv.livesIds.erase(liv.livesIds.begin());
+        world->killEntity(lifeID);
     }
     else {
-        int lifeID = liv.livesIds.at(0).value();
         liv.livesIds.erase(liv.livesIds.begin());
         world->killEntity(lifeID);
         world->removeComponentFromEntity<Collision>(entity);

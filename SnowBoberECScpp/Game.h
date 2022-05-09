@@ -23,6 +23,7 @@ public:
     InputManager inputManager;
 
     GameState gameState;
+    bool gameOver;
 	long gameFrame;
     float deltaTime;
     int result;

@@ -12,6 +12,7 @@
 #include "SpeedSystem.h"
 #include "ImmortalSystem.h"
 #include "PlayerCollisionSystem.h"
+#include "GameOverSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -20,6 +21,7 @@ Game::Game() {
 
     srand(unsigned int(time(0)));
     gameFrame = 0;
+    gameOver = false;
     gameState = GameState::MAIN_MENU;
 
     mainMenuECS.fillWorld();
@@ -38,7 +40,6 @@ void Game::gameLoop() {
     while (window.isOpen())
     {
         sf::Event event;
-
         while (window.pollEvent(event))
         {
             inputManager.update(event);
@@ -57,15 +58,7 @@ void Game::gameLoop() {
                 }
             case sf::Event::KeyPressed:
                 if (gameState == GameState::GAMEPLAY) {
-                    continue;
-                    //switch (event.key.code)
-                    //{
-                    //    case sf::Keyboard::Space:
-                    //    player.jump(gameFrame);break;
-                    //    case sf::Keyboard::LControl:
-                    //    player.crouch();break;
-
-                    //}
+                    
                 }
                 else if (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER) {
                     if (event.key.code == sf::Keyboard::Tab) {
@@ -110,6 +103,11 @@ void Game::updateWorld() {
         mainMenuECS.updateSystems(gameFrame, deltaTime);
     }
     else if (gameState == GameState::GAMEPLAY) {
+        if (gameOver) {
+            gameState = GameState::GAME_OVER;
+            createGameOverWorld();
+            return;
+        }
         gameplayECS.updateSystems(gameFrame, deltaTime);
     }
     else if (gameState == GameState::GAME_OVER) {
@@ -148,6 +146,7 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addSystem(std::make_unique<JumpSystem>(&texturesManager));
     gameplayECS.addSystem(std::make_unique<SpeedSystem>());
     gameplayECS.addSystem(std::make_unique<ImmortalSystem>());
+    gameplayECS.addSystem(std::make_unique<GameOverSystem>(this));
 
     gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 
