@@ -57,9 +57,11 @@ CollisionType CollisionSystem::intersects(const Position& posA, Collision& colA,
     colB.rectangle = sf::IntRect(rshB.getGlobalBounds());
 
     if (touch(colA.rectangle, colB.rectangle)) {
+        //printf("TOuch \n");
         return CollisionType::TOUCH;
     }
     if (colA.rectangle.intersects(colB.rectangle)) {
+        //printf("Kolizja \n");
         return CollisionType::INTERSECT;
     }
 

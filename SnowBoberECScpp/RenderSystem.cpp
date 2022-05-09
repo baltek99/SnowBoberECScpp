@@ -14,11 +14,10 @@ void RenderSystem::update(long gameFrame, float delta, World* world) {
              continue;
          }
 
-         //std::optional<Position>& opt_pos = pos.at(entity);
-         //std::optional<Visual>& opt_vis = vis.at(entity);
+         Visual& vis = visVec.at(entity).value();
+         if (!vis.isVisible) continue;
 
          Position& pos = posVec.at(entity).value();
-         Visual& vis = visVec.at(entity).value();
 
          vis.sprite.setPosition(pos.x + vis.sprite.getScale().x * vis.sprite.getLocalBounds().width / 2, 
              pos.y + vis.sprite.getScale().y * vis.sprite.getLocalBounds().height / 2);

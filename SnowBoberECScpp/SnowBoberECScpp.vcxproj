@@ -163,6 +163,7 @@
     <ClCompile Include="ConstValues.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HighScores.cpp" />
+    <ClCompile Include="ImmortalSystem.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="JumpSystem.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HighScores.h" />
+    <ClInclude Include="ImmortalSystem.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Jump.h" />
     <ClInclude Include="JumpSystem.h" />

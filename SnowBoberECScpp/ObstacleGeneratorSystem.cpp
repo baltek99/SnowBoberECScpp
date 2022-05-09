@@ -40,7 +40,7 @@ void ObstacleGeneratorSystem::update(long gameFrame, float delta, World* world) 
         }
         else if (x < 666) {
             createGridFlag(world);
-            createGridStick(world);
+            //createGridStick(world);
             createScorePoint(world, int(ConstValues::V_WIDTH) + 500);
         }
         else {

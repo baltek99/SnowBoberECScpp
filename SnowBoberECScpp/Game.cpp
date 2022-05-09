@@ -10,6 +10,8 @@
 #include "CollisionSystem.h"
 #include "JumpSystem.h"
 #include "SpeedSystem.h"
+#include "ImmortalSystem.h"
+#include "PlayerCollisionSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -142,8 +144,10 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addSystem(std::make_unique<ObstacleGeneratorSystem>(3, 12, 7, 4, &texturesManager));
     gameplayECS.addSystem(std::make_unique<PlayerControlledSystem>(event_, &texturesManager, &inputManager));
     gameplayECS.addSystem(std::make_unique<CollisionSystem>());
+    gameplayECS.addSystem(std::make_unique<PlayerCollisionSystem>(&texturesManager));
     gameplayECS.addSystem(std::make_unique<JumpSystem>(&texturesManager));
     gameplayECS.addSystem(std::make_unique<SpeedSystem>());
+    gameplayECS.addSystem(std::make_unique<ImmortalSystem>());
 
     gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 
@@ -161,6 +165,23 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addComponentToEntity<Position>(background2, Position(ConstValues::V_WIDTH, 0));
     gameplayECS.addComponentToEntity<Move>(background2, Move(-2));
 
+    int life1 = 16;
+    gameplayECS.addComponentToEntity(life1, Position(ConstValues::HEART_POSITION_X_1, ConstValues::HEART_POSITION_Y));
+    gameplayECS.addComponentToEntity(life1, Visual(texturesManager.heart, ConstValues::HEART_WIDTH, ConstValues::HEART_HEIGHT));
+
+    int life2 = 17;
+    gameplayECS.addComponentToEntity(life2, Position(ConstValues::HEART_POSITION_X_2, ConstValues::HEART_POSITION_Y));
+    gameplayECS.addComponentToEntity(life2, Visual(texturesManager.heart, ConstValues::HEART_WIDTH, ConstValues::HEART_HEIGHT));
+
+    int life3 = 18;
+    gameplayECS.addComponentToEntity(life3, Position(ConstValues::HEART_POSITION_X_3, ConstValues::HEART_POSITION_Y));
+    gameplayECS.addComponentToEntity(life3, Visual(texturesManager.heart, ConstValues::HEART_WIDTH, ConstValues::HEART_HEIGHT));
+
+    std::vector<std::optional<int>> lives;
+    lives.push_back(std::optional<int>(16));
+    lives.push_back(std::optional<int>(17));
+    lives.push_back(std::optional<int>(18));
+
     Entity player = 11;
     gameplayECS.addComponentToEntity<Visual>(player, Visual(texturesManager.boberStand, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
     gameplayECS.addComponentToEntity<Position>(player, Position(ConstValues::BOBER_DEFAULT_POSITION_X, ConstValues::BOBER_DEFAULT_POSITION_Y));
@@ -168,7 +189,7 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addComponentToEntity<PlayerControlled>(player, PlayerControlled(PlayerState::IDLE, playerName));
     gameplayECS.addComponentToEntity<Collision>(player, Collision(ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT, ObstacleType::PLAYER));
     gameplayECS.addComponentToEntity<Score>(player, Score(0));
-    //gameplayECS.addComponentToEntity<Lives>(player, Lives(lives));
+    gameplayECS.addComponentToEntity<Lives>(player, Lives(lives));
 }
 
 void Game::createGameOverWorld() {}
