@@ -9,6 +9,7 @@
 #include "PlayerControlledSystem.h"
 #include "CollisionSystem.h"
 #include "JumpSystem.h"
+#include "SpeedSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -142,6 +143,7 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addSystem(std::make_unique<PlayerControlledSystem>(event_, &texturesManager, &inputManager));
     gameplayECS.addSystem(std::make_unique<CollisionSystem>());
     gameplayECS.addSystem(std::make_unique<JumpSystem>(&texturesManager));
+    gameplayECS.addSystem(std::make_unique<SpeedSystem>());
 
     gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 

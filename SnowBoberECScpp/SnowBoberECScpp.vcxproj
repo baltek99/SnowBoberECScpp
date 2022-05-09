@@ -178,6 +178,7 @@
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="ScoreBind.cpp" />
     <ClCompile Include="SnowBoberECScpp.cpp" />
+    <ClCompile Include="SpeedSystem.cpp" />
     <ClCompile Include="TextField.cpp" />
     <ClCompile Include="TexturesManager.cpp" />
     <ClCompile Include="Util.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="ResultBind.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="ScoreBind.h" />
+    <ClInclude Include="SpeedSystem.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="TextField.h" />
     <ClInclude Include="TexturesManager.h" />
