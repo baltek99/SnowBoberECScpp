@@ -7,8 +7,7 @@
 #include "TexturesManager.h"
 #include "InputManager.h"
 
-PlayerControlledSystem::PlayerControlledSystem(const sf::Event& event, TexturesManager* texturesManager, InputManager* inputManager_) : actualEvent(event) {
-    textures = texturesManager;
+PlayerControlledSystem::PlayerControlledSystem(const sf::Event& event, const TexturesManager* texturesManager, InputManager* inputManager_) : actualEvent(event), textures(texturesManager) {    
     inputManager = inputManager_;
 }
 
@@ -44,6 +43,7 @@ void PlayerControlledSystem::update(long gameFrame, float delta, World* world) {
                 jump.jumpFrom = ConstValues::JUMP_FROM_RAIL_Y;
                 jump.startJumpFrame = gameFrame;
                 world->addComponentToEntity<Visual>(entity, Visual(textures->boberFlip, ConstValues::BOBER_IN_JUMP_WIDTH, ConstValues::BOBER_IN_JUMP_HEIGHT));
+                world->removeComponentFromEntity<CollisionResponse>(entity);
             }
             else if (pctrl.playerState == PlayerState::IDLE || pctrl.playerState == PlayerState::CROUCH) {
                 if (pctrl.playerState == PlayerState::CROUCH) {

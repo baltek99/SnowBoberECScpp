@@ -3,7 +3,7 @@
 #include "ConstValues.h"
 #include "TexturesManager.h"
 
-PlayerCollisionSystem::PlayerCollisionSystem(TexturesManager* texManager) : textures(texManager) {
+PlayerCollisionSystem::PlayerCollisionSystem(const TexturesManager* texManager) : textures(texManager) {
 }
 
 void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
@@ -41,7 +41,8 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
             pos.y = ConstValues::SLIDING_ON_RAIL_Y;
             pc.playerState = PlayerState::SLIDING;
             world->addComponentToEntity<Visual>(entity, Visual(textures->boberSlide, ConstValues::BOBER_ON_RAIL_WIDTH, ConstValues::BOBER_ON_RAIL_HEIGHT));
-            world->removeComponentFromEntity<CollisionResponse>(entity);
+            world->removeComponentFromEntity<Collision>(cr.collidingEntityId);
+            //world->removeComponentFromEntity<CollisionResponse>(entity);
         }
         else if (cr.obstacle == ObstacleType::GRID) {
             if (pc.playerState != PlayerState::CROUCH) {

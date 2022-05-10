@@ -1,11 +1,17 @@
-﻿  PlayerCollisionSystem.cpp
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(38,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(41,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(49,38): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(66,16): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'unsigned __int64'
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(66,16): message : consider using '%zi' in the format string
+﻿  JumpSystem.cpp
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\JumpSystem.cpp(57,38): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\JumpSystem.cpp(64,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\JumpSystem.cpp(63,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\JumpSystem.cpp(79,46): warning C4305: 'argument': truncation from 'double' to 'float'
+  ObstacleGeneratorSystem.cpp
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(18,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(55,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(62,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(69,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(76,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(82,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Generating code
-  2 of 1565 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  5 of 1840 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

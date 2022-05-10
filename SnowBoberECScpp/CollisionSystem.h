@@ -8,11 +8,10 @@
 
 class CollisionSystem : public System {
 public:
+	CollisionSystem();
+
 	void update(long gameFrame, float delta, World* world);
 
 private :
 	CollisionType intersects(const Position& posA, Collision& colA, const Visual& visA, const Position& posB, Collision& colB, const Visual& visB);
-
-    bool touch(const sf::IntRect& s, const sf::IntRect& r);
 };
-

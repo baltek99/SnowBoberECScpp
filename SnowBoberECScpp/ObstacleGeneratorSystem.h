@@ -4,12 +4,12 @@
 
 class ObstacleGeneratorSystem : public System {
 public :
-     ObstacleGeneratorSystem(int obstaclesMinIndex, int gridMinIndex, int scoreMinIndex, int maxNumberOfObstacles_, TexturesManager* texManager);
+     ObstacleGeneratorSystem(int obstaclesMinIndex, int gridMinIndex, int scoreMinIndex, int maxNumberOfObstacles_, const TexturesManager* texManager);
 
 	void update(long gameFrame, float delta, World* world);
 
 private:
-    TexturesManager* textures;
+    const TexturesManager* textures;
     int maxNumberOfObstacles;
     int obstacleMin, obstacleMax;
     int current;

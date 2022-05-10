@@ -11,6 +11,5 @@ int main()
 
     snowBoberGame.gameLoop();
 
-
     return 0;
 }

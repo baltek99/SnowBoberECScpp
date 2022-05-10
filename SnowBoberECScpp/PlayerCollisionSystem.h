@@ -6,11 +6,11 @@ class TexturesManager;
 
 class PlayerCollisionSystem : public System {
 public:
-	PlayerCollisionSystem(TexturesManager* texManager);
+	PlayerCollisionSystem(const TexturesManager* texManager);
 
 	void update(long gameFrame, float delta, World* world);
 private :
-	TexturesManager* textures;
+	const TexturesManager* textures;
 
 	void removeLifeOrKill(World* world, int entity, Lives& liv, int score);
 };

@@ -1,5 +1,8 @@
 #include "CollisionSystem.h"
 #include "World.h"
+#include "RotatedRectangle.h"
+
+CollisionSystem::CollisionSystem() {}
 
 void CollisionSystem::update(long gameFrame, float delta, World* world) {
     World::OptVec<Position>& posVec = world->getComponents<Position>();
@@ -38,42 +41,30 @@ void CollisionSystem::update(long gameFrame, float delta, World* world) {
 CollisionType CollisionSystem::intersects(const Position& posA, Collision& colA, const Visual& visA, const Position& posB, Collision& colB, const Visual& visB) {
 
     sf::RectangleShape rshA;
-    rshA.setTextureRect(sf::IntRect(visA.sprite.getGlobalBounds()));
     rshA.setSize(sf::Vector2f(visA.sprite.getLocalBounds().width * visA.sprite.getScale().x,
         visA.sprite.getLocalBounds().height * visA.sprite.getScale().y));
     rshA.setOrigin(rshA.getSize().x / 2, rshA.getSize().y / 2);
-    rshA.setRotation(visA.sprite.getRotation());
+    //rshA.setRotation(visA.sprite.getRotation());
+    rshA.setRotation(0);
     rshA.setPosition(posA.x + rshA.getSize().x / 2, posA.y + rshA.getSize().y / 2); 
     
     sf::RectangleShape rshB;
-    rshB.setTextureRect(sf::IntRect(visB.sprite.getGlobalBounds()));
     rshB.setSize(sf::Vector2f(visB.sprite.getLocalBounds().width * visB.sprite.getScale().x,
         visB.sprite.getLocalBounds().height * visB.sprite.getScale().y));
     rshB.setOrigin(rshB.getSize().x / 2, rshB.getSize().y / 2);
-    rshB.setRotation(visB.sprite.getRotation());
+    //rshB.setRotation(visB.sprite.getRotation());
+    rshB.setRotation(0);
     rshB.setPosition(posB.x + rshB.getSize().x / 2, posB.y + rshB.getSize().y / 2);
 
     colA.rectangle = sf::IntRect(rshA.getGlobalBounds());
     colB.rectangle = sf::IntRect(rshB.getGlobalBounds());
 
-    if (touch(colA.rectangle, colB.rectangle)) {
-        //printf("TOuch \n");
-        return CollisionType::TOUCH;
-    }
-    if (colA.rectangle.intersects(colB.rectangle)) {
-        //printf("Kolizja \n");
+    RotatedRectangle rectA = RotatedRectangle(sf::FloatRect(colA.rectangle), visA.sprite.getRotation());
+    RotatedRectangle rectB = RotatedRectangle(sf::FloatRect(colB.rectangle), visB.sprite.getRotation());    
+
+    if (rectA.Intersects(rectB)) {
         return CollisionType::INTERSECT;
     }
 
     return CollisionType::NONE;
-}
-
-
-bool CollisionSystem::touch(const sf::IntRect& s, const sf::IntRect& r) {
-    bool left = s.left == r.left + r.width && s.left + s.width > r.left && s.top < r.top + r.height && s.top + s.height > r.top;
-    bool right = s.left < r.left + r.width && s.left + s.width == r.left && s.top < r.top + r.height && s.top + s.height > r.top;
-    bool down = s.left < r.left + r.width && s.left + s.width > r.left && s.top == r.top + r.height && s.top + s.height > r.top;
-    bool up = s.left < r.left + r.width && s.left + s.width > r.left && s.top < r.top + r.height && s.top + s.height == r.top;
-
-    return left || right || down || up;
 }

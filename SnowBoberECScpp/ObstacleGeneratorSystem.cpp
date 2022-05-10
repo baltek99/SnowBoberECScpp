@@ -2,7 +2,7 @@
 #include "World.h"
 #include "ConstValues.h"
 
-ObstacleGeneratorSystem::ObstacleGeneratorSystem(int obstaclesMinIndex, int gridMinIndex, int scoreMinIndex, int maxNumberOfObstacles_, TexturesManager* texManager) {
+ObstacleGeneratorSystem::ObstacleGeneratorSystem(int obstaclesMinIndex, int gridMinIndex, int scoreMinIndex, int maxNumberOfObstacles_, const TexturesManager* texManager) : textures(texManager) {
     maxNumberOfObstacles = maxNumberOfObstacles_;
     obstacleMin = obstaclesMinIndex;
     obstacleMax = obstaclesMinIndex + maxNumberOfObstacles - 1;
@@ -16,7 +16,6 @@ ObstacleGeneratorSystem::ObstacleGeneratorSystem(int obstaclesMinIndex, int grid
     speedCount = 3;
     frame = 0;
     srand(time(0));
-    textures = texManager;
 }
 
 void ObstacleGeneratorSystem::update(long gameFrame, float delta, World* world) {
@@ -68,7 +67,7 @@ void ObstacleGeneratorSystem::createRail(World* world) {
     world->addComponentToEntity<Position>(obstacleMin + current, Position(int(ConstValues::V_WIDTH), int(ConstValues::RAIL_POSITION_Y)));
     world->addComponentToEntity<Visual>(obstacleMin + current, Visual(textures->rail, ConstValues::RAIL_WIDTH, ConstValues::RAIL_HEIGHT));
     world->addComponentToEntity<Move>(obstacleMin + current, Move(initialSpeed));
-    world->addComponentToEntity<Collision>(obstacleMin + current, Collision(int(ConstValues::RAIL_WIDTH) - 50, int(ConstValues::RAIL_HEIGHT), ObstacleType::RAIL));
+    world->addComponentToEntity<Collision>(obstacleMin + current, Collision(int(ConstValues::RAIL_WIDTH) - 100, int(ConstValues::RAIL_HEIGHT), ObstacleType::RAIL));
 }
 
 void ObstacleGeneratorSystem::createBox(World* world) {

@@ -176,8 +176,10 @@
     <ClCompile Include="PlayerControlled.cpp" />
     <ClCompile Include="PlayerControlledSystem.cpp" />
     <ClCompile Include="Position.cpp" />
+    <ClCompile Include="RailSystem.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="ResultBind.cpp" />
+    <ClCompile Include="RotatedRectangle.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="ScoreBind.cpp" />
     <ClCompile Include="SnowBoberECScpp.cpp" />
@@ -216,8 +218,10 @@
     <ClInclude Include="PlayerControlledSystem.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Position.h" />
+    <ClInclude Include="RailSystem.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="ResultBind.h" />
+    <ClInclude Include="RotatedRectangle.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="ScoreBind.h" />
     <ClInclude Include="SpeedSystem.h" />

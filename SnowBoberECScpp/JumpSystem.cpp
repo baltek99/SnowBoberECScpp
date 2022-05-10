@@ -4,10 +4,10 @@
 #include "TexturesManager.h"
 #include "Util.h"
 
-JumpSystem::JumpSystem(TexturesManager* texturesManager) : textures(texturesManager) {
+JumpSystem::JumpSystem(const TexturesManager* texturesManager) : textures(texturesManager) {
     jumpHeight = 120;
     duration = 110;
-    rotationSpeed = 3.4f;
+    rotationSpeed = 3.3f;
     speedCount = 5;
     frame = 0;
 }
@@ -25,12 +25,12 @@ void JumpSystem::update(long gameFrame, float delta, World* world) {
         duration = 80;
         rotationSpeed = 4.5f;
     }
-    else if (gameFrame == 3 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
-        duration = 65;
+    else if (gameFrame == 5 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
+        duration = 70;
         rotationSpeed = 5.5f;
     }
     else if (gameFrame == 6 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
-        duration = 55;
+        duration = 65;
         rotationSpeed = 6.f;
     }
     else if (gameFrame == 8 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
@@ -73,10 +73,10 @@ void JumpSystem::update(long gameFrame, float delta, World* world) {
                 }
                 else {
                     if ((gameFrame - jump.startJumpFrame) / duration < 0.15f)
-                       vis.sprite.rotate(-1.3f);
+                       vis.sprite.rotate(-1.2f);
 
                     else if (vis.sprite.getRotation() > -10)
-                        vis.sprite.rotate(0.5);
+                        vis.sprite.rotate(0.4);
                 }
             }
         }

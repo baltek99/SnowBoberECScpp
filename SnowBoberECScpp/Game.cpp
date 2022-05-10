@@ -13,6 +13,7 @@
 #include "ImmortalSystem.h"
 #include "PlayerCollisionSystem.h"
 #include "GameOverSystem.h"
+#include "RailSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -125,6 +126,8 @@ void Game::renderWorld() {
 }
 
 void Game::createMainMenuWorld() { 
+    mainMenuECS.resetWorld();
+
     mainMenuECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 
     Entity background = 0;
@@ -137,6 +140,10 @@ void Game::createMainMenuWorld() {
 }
 
 void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
+    gameplayECS.resetWorld();
+
+    gameOver = false;
+
     gameplayECS.addSystem(std::make_unique<MoveSystem>());
     gameplayECS.addSystem(std::make_unique<BackgroundGeneratorSystem>());
     gameplayECS.addSystem(std::make_unique<ObstacleGeneratorSystem>(3, 12, 7, 4, &texturesManager));
@@ -144,6 +151,7 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addSystem(std::make_unique<CollisionSystem>());
     gameplayECS.addSystem(std::make_unique<PlayerCollisionSystem>(&texturesManager));
     gameplayECS.addSystem(std::make_unique<JumpSystem>(&texturesManager));
+    gameplayECS.addSystem(std::make_unique<RailSystem>(&texturesManager));
     gameplayECS.addSystem(std::make_unique<SpeedSystem>());
     gameplayECS.addSystem(std::make_unique<ImmortalSystem>());
     gameplayECS.addSystem(std::make_unique<GameOverSystem>(this));
@@ -191,7 +199,19 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addComponentToEntity<Lives>(player, Lives(lives));
 }
 
-void Game::createGameOverWorld() {}
+void Game::createGameOverWorld() {
+    gameOverECS.resetWorld();
+
+    gameOverECS.addRenderSystem(std::make_unique<RenderSystem>(window));
+
+    Entity background = 0;
+    sf::Vector2u size = texturesManager.gameOver.getSize();
+    float scaleX = ConstValues::V_WIDTH / float(size.x);
+    float scaleY = ConstValues::V_HEIGHT / float(size.y);
+
+    gameOverECS.addComponentToEntity<Visual>(background, Visual(texturesManager.gameOver, scaleX, scaleY));
+    gameOverECS.addComponentToEntity<Position>(background, Position(0, 0));
+}
 
 void Game::createHighScoreWorld() {}
 
