@@ -15,6 +15,7 @@
 #include "GameOverSystem.h"
 #include "RailSystem.h"
 #include "ScoreRenderSystem.h"
+#include "ResultRenderSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -32,6 +33,7 @@ Game::Game() {
     gameOverECS.fillWorld();
 
     createMainMenuWorld();
+    playerName = "Bober";
 }
 
 void Game::gameLoop() {
@@ -128,6 +130,7 @@ void Game::renderWorld() {
 
 void Game::createMainMenuWorld() { 
     mainMenuECS.resetWorld();
+    gameFrame = 0;
 
     mainMenuECS.addRenderSystem(std::make_unique<RenderSystem>(window));
 
@@ -143,6 +146,7 @@ void Game::createMainMenuWorld() {
 void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.resetWorld();
 
+    gameFrame = 0;
     gameOver = false;
 
     gameplayECS.addSystem(std::make_unique<MoveSystem>());
@@ -150,7 +154,7 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addSystem(std::make_unique<ObstacleGeneratorSystem>(3, 12, 7, 4, &texturesManager));
     gameplayECS.addSystem(std::make_unique<PlayerControlledSystem>(event_, &texturesManager, &inputManager));
     gameplayECS.addSystem(std::make_unique<CollisionSystem>());
-    gameplayECS.addSystem(std::make_unique<PlayerCollisionSystem>(&texturesManager));
+    gameplayECS.addSystem(std::make_unique<PlayerCollisionSystem>(&texturesManager, this));
     gameplayECS.addSystem(std::make_unique<JumpSystem>(&texturesManager));
     gameplayECS.addSystem(std::make_unique<RailSystem>(&texturesManager));
     gameplayECS.addSystem(std::make_unique<SpeedSystem>());
@@ -208,8 +212,10 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
 
 void Game::createGameOverWorld() {
     gameOverECS.resetWorld();
+    gameFrame = 0;
 
     gameOverECS.addRenderSystem(std::make_unique<RenderSystem>(window));
+    gameOverECS.addRenderSystem(std::make_unique<ResultRenderSystem>(window));
 
     Entity background = 0;
     sf::Vector2u size = texturesManager.gameOver.getSize();
@@ -218,6 +224,11 @@ void Game::createGameOverWorld() {
 
     gameOverECS.addComponentToEntity<Visual>(background, Visual(texturesManager.gameOver, scaleX, scaleY));
     gameOverECS.addComponentToEntity<Position>(background, Position(0, 0));
+
+    Entity result = 1;
+    gameOverECS.addComponentToEntity<TextField>(result, TextField(playerName));
+    gameOverECS.addComponentToEntity<Score>(result, Score(playerResult));
+    gameOverECS.addComponentToEntity<Position>(result, Position(300, 500));
 }
 
 void Game::createHighScoreWorld() {}

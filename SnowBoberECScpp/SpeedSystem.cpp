@@ -3,25 +3,15 @@
 #include "ConstValues.h"
 
 void SpeedSystem::update(long gameFrame, float delta, World* world) {
-
     World::OptVec<Move>& movVec = world->getComponents<Move>();
-    World::OptVec<Collision>& colVec = world->getComponents<Collision>();
-
-    if (gameFrame % ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT == 0) {
-        obstacleSpeed--;
-    }
 
     for (unsigned int entity = 0; entity < world->MAX_ENTITIES; entity++) {
-        if (!world->isEntityOk<Move, Collision>(entity)) {
-            if (!world->isEntityOk<Move>(entity)) continue;
-
-            if (gameFrame % ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT == 0) {
-                Move& mov = movVec.at(entity).value();
-                mov.speed--;
-            }
+        if (!world->isEntityOk<Move>(entity)) {
             continue;
         } 
-        Move& mov = movVec.at(entity).value();
-        mov.speed = obstacleSpeed;
+        if (gameFrame % ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT == 0) {
+            Move& mov = movVec.at(entity).value();
+            mov.speed--;
+        }
     }
 }

@@ -25,6 +25,7 @@ void ObstacleGeneratorSystem::update(long gameFrame, float delta, World* world) 
         spawnRate = spawnRate - spawnRate / speedCount;
         speedCount++;
         frame = 1;
+        initialSpeed = -speedCount;
     }
 
     if (frame % spawnRate == 0) {
@@ -60,7 +61,7 @@ void ObstacleGeneratorSystem::createGridStick(World* world) {
     world->addComponentToEntity<Position>(obstacleMin + current, Position(int(ConstValues::V_WIDTH), int(ConstValues::GRID_POSITION_Y)));
     world->addComponentToEntity<Visual>(obstacleMin + current, Visual(textures->gridStick, ConstValues::GRID_WIDTH, ConstValues::GRID_HEIGHT));
     world->addComponentToEntity<Move>(obstacleMin + current, Move(initialSpeed));
-    world->addComponentToEntity<Collision>(obstacleMin + current, Collision(0, 0, ObstacleType::GRID));
+    //world->addComponentToEntity<Collision>(obstacleMin + current, Collision(0, 0, ObstacleType::GRID));
 }
 
 void ObstacleGeneratorSystem::createRail(World* world) {

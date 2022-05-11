@@ -28,6 +28,7 @@ public:
     float deltaTime;
     int result;
     std::string playerName;
+    int playerResult;
 
 	Game();
 

@@ -179,6 +179,7 @@
     <ClCompile Include="RailSystem.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="ResultBind.cpp" />
+    <ClCompile Include="ResultRenderSystem.cpp" />
     <ClCompile Include="RotatedRectangle.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="ScoreBind.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="RailSystem.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="ResultBind.h" />
+    <ClInclude Include="ResultRenderSystem.h" />
     <ClInclude Include="RotatedRectangle.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="ScoreBind.h" />

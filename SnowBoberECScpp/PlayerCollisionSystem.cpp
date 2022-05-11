@@ -2,8 +2,9 @@
 #include "World.h"
 #include "ConstValues.h"
 #include "TexturesManager.h"
+#include "Game.h"
 
-PlayerCollisionSystem::PlayerCollisionSystem(const TexturesManager* texManager) : textures(texManager) {
+PlayerCollisionSystem::PlayerCollisionSystem(const TexturesManager* texManager, Game* game_) : textures(texManager), game(game_) {
 }
 
 void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
@@ -33,8 +34,9 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
             world->removeComponentFromEntity<CollisionResponse>(entity);
         }
         else if (cr.obstacle == ObstacleType::BOX || (cr.obstacle == ObstacleType::RAIL && (pc.playerState == PlayerState::IDLE || pc.playerState == PlayerState::CROUCH))) {
-            removeLifeOrKill(world, entity, liv, score.score);
+            removeLifeOrKill(world, entity, liv, score.score, cr.collidingEntityId);
             pos.y = ConstValues::BOBER_DEFAULT_POSITION_Y;
+            world->addComponentToEntity<Visual>(entity, Visual(textures->boberStand, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
         }
         else if (cr.obstacle == ObstacleType::RAIL && (pc.playerState == PlayerState::JUMPING || pc.playerState == PlayerState::JUMPING_FROM_CROUCH || pc.playerState == PlayerState::JUMPING_ON_RAIL)) {
             pos.y = ConstValues::SLIDING_ON_RAIL_Y;
@@ -44,7 +46,7 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
         }
         else if (cr.obstacle == ObstacleType::GRID) {
             if (pc.playerState != PlayerState::CROUCH) {
-                removeLifeOrKill(world, entity, liv, score.score);
+                removeLifeOrKill(world, entity, liv, score.score, cr.collidingEntityId);
                 pos.y = ConstValues::BOBER_DEFAULT_POSITION_Y;
             }
             else {
@@ -54,10 +56,10 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
     }
 }
 
-void PlayerCollisionSystem::removeLifeOrKill(World* world, int entity, Lives& liv, int score) {
+void PlayerCollisionSystem::removeLifeOrKill(World* world, int entity, Lives& liv, int score, int obstacleId) {
     int lifeID = liv.livesIds.at(0).value();
     if (liv.livesIds.size() == 1) {
-        //gameScreen.playerResult = score;
+        game->playerResult = score;
         world->killEntity(entity);
         world->killEntity(lifeID);
     }
@@ -66,6 +68,7 @@ void PlayerCollisionSystem::removeLifeOrKill(World* world, int entity, Lives& li
         world->killEntity(lifeID);
         world->removeComponentFromEntity<Collision>(entity);
         world->removeComponentFromEntity<CollisionResponse>(entity);
+        world->removeComponentFromEntity<Collision>(obstacleId);
     }
 }
 

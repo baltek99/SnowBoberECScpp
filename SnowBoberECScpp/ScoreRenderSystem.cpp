@@ -28,7 +28,7 @@ void ScoreRenderSystem::update(long gameFrame, float delta, World* world) {
         if (!scoreOpt.has_value()) continue;
 
         text.setString("Score: " + std::to_string(scoreOpt.value().score));
-        text.setPosition(ConstValues::SCORE_POSITION_X, ConstValues::SCORE_POSITION_Y);
+        text.setPosition(pos.x, pos.y);
         window.draw(text);
     }
 }
