@@ -62,7 +62,7 @@ CollisionType CollisionSystem::intersects(const Position& posA, Collision& colA,
     RotatedRectangle rectA = RotatedRectangle(sf::FloatRect(colA.rectangle), visA.sprite.getRotation());
     RotatedRectangle rectB = RotatedRectangle(sf::FloatRect(colB.rectangle), visB.sprite.getRotation());    
 
-    if (rectA.Intersects(rectB)) {
+    if (rectA.intersects(rectB)) {
         return CollisionType::INTERSECT;
     }
 

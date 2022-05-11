@@ -9,6 +9,8 @@ public:
     int jumpHeight;
     float duration;
     float rotationSpeed;
+    float ollieUpSpeed;
+    float ollieDownSpeed;
     int speedCount;
     int frame;
 

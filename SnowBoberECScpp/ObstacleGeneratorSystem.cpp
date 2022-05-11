@@ -35,16 +35,16 @@ void ObstacleGeneratorSystem::update(long gameFrame, float delta, World* world) 
 
         if (x < 333) {
             createBox(world);
-            createScorePoint(world, int(ConstValues::V_WIDTH) + 500);
+            createScorePoint(world, int(ConstValues::V_WIDTH) + ConstValues::BOX_WIDTH + ConstValues::BOBER_IN_JUMP_WIDTH);
         }
         else if (x < 666) {
             createGridFlag(world);
             createGridStick(world);
-            createScorePoint(world, int(ConstValues::V_WIDTH) + 500);
+            createScorePoint(world, int(ConstValues::V_WIDTH) + ConstValues::GRID_WIDTH + ConstValues::BOBER_CROUCH_WIDTH);
         }
         else {
             createRail(world);
-            createScorePoint(world, int(ConstValues::V_WIDTH) + 500);
+            createScorePoint(world, int(ConstValues::V_WIDTH) + ConstValues::RAIL_WIDTH + ConstValues::BOBER_DEFAULT_WIDTH);
         }
     }
 }

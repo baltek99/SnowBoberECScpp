@@ -2,21 +2,21 @@
 
 #include <SFML/Graphics.hpp>
 
-class RotatedRectangle
+class RotatedRectangle 
 {
 public:
-    sf::FloatRect CollisionRectangle;
-    float Rotation;
-    sf::Vector2f Origin;
+    sf::FloatRect collisionRectangle;
+    float rotation;
+    sf::Vector2f origin;
 
-    RotatedRectangle(sf::FloatRect theRectangle, float theInitialRotation)
+    RotatedRectangle(sf::FloatRect rectangle, float theInitialRotation)
     {
-        CollisionRectangle = theRectangle;
-        Rotation = theInitialRotation;
+        collisionRectangle = rectangle;
+        rotation = theInitialRotation;
 
         //Calculate the Rectangles origin. We assume the center of the Rectangle will
         //be the point that we will be rotating around and we use that for the origin
-        Origin = sf::Vector2f((int)theRectangle.width / 2, (int)theRectangle.height / 2);
+        origin = sf::Vector2f((int)rectangle.width / 2, (int)rectangle.height / 2);
     }
 
     /// <summary>
@@ -24,38 +24,38 @@ public:
     /// </summary>
     /// <param name="theXPositionAdjustment"></param>
     /// <param name="theYPositionAdjustment"></param>
-    void ChangePosition(int theXPositionAdjustment, int theYPositionAdjustment)
+    void changePosition(int theXPositionAdjustment, int theYPositionAdjustment)
     {
-        CollisionRectangle.left += theXPositionAdjustment;
-        CollisionRectangle.top += theYPositionAdjustment;
+        collisionRectangle.left += theXPositionAdjustment;
+        collisionRectangle.top += theYPositionAdjustment;
     }
 
 
     /// <summary>
     /// Check to see if two Rotated Rectangls have collided
     /// </summary>
-    /// <param name="theRectangle"></param>
+    /// <param name="rectangle"></param>
     /// <returns></returns>
-    bool Intersects(RotatedRectangle theRectangle)
+    bool intersects(RotatedRectangle rectangle)
     {
         //Calculate the Axis we will use to determine if a collision has occurred
         //Since the objects are rectangles, we only have to generate 4 Axis (2 for
         //each rectangle) since we know the other 2 on a rectangle are parallel.
-        std::vector<sf::Vector2f> aRectangleAxis;
-        aRectangleAxis.resize(4);
-        aRectangleAxis[0] = (UpperRightCorner() - UpperLeftCorner());
-        aRectangleAxis[1] = (UpperRightCorner() - LowerRightCorner());
-        aRectangleAxis[2] = (theRectangle.UpperLeftCorner() - theRectangle.LowerLeftCorner());
-        aRectangleAxis[3] = (theRectangle.UpperLeftCorner() - theRectangle.UpperRightCorner());
+        std::vector<sf::Vector2f> rectangleAxis;
+        rectangleAxis.resize(4);
+        rectangleAxis[0] = (upperRightCorner() - upperLeftCorner());
+        rectangleAxis[1] = (upperRightCorner() - lowerRightCorner());
+        rectangleAxis[2] = (rectangle.upperLeftCorner() - rectangle.lowerLeftCorner());
+        rectangleAxis[3] = (rectangle.upperLeftCorner() - rectangle.upperRightCorner());
 
         //Cycle through all of the Axis we need to check. If a collision does not occur
         //on ALL of the Axis, then a collision is NOT occurring. We can then exit out 
         //immediately and notify the calling function that no collision was detected. If
         //a collision DOES occur on ALL of the Axis, then there is a collision occurring
         //between the rotated rectangles. We know this to be true by the Seperating Axis Theorem
-        for (sf::Vector2f aAxis : aRectangleAxis)
+        for (sf::Vector2f axis : rectangleAxis)
         {
-            if (!IsAxisCollision(theRectangle, aAxis))
+            if (!isAxisCollision(rectangle, axis))
             {
                 return false;
             }
@@ -68,42 +68,42 @@ public:
     /// Determines if a collision has occurred on an Axis of one of the
     /// planes parallel to the Rectangle
     /// </summary>
-    /// <param name="theRectangle"></param>
-    /// <param name="aAxis"></param>
+    /// <param name="rectangle"></param>
+    /// <param name="axis"></param>
     /// <returns></returns>
-    bool IsAxisCollision(RotatedRectangle theRectangle, sf::Vector2f aAxis)
+    bool isAxisCollision(RotatedRectangle rectangle, sf::Vector2f axis)
     {
         //Project the corners of the Rectangle we are checking on to the Axis and
         //get a scalar value of that project we can then use for comparison
-        std::vector<int> aRectangleAScalars;
-        aRectangleAScalars.resize(4);
-        aRectangleAScalars[0] = (GenerateScalar(theRectangle.UpperLeftCorner(), aAxis));
-        aRectangleAScalars[1] = (GenerateScalar(theRectangle.UpperRightCorner(), aAxis));
-        aRectangleAScalars[2] = (GenerateScalar(theRectangle.LowerLeftCorner(), aAxis));
-        aRectangleAScalars[3] = (GenerateScalar(theRectangle.LowerRightCorner(), aAxis));
+        std::vector<int> rectangleAScalars;
+        rectangleAScalars.resize(4);
+        rectangleAScalars[0] = (generateScalar(rectangle.upperLeftCorner(), axis));
+        rectangleAScalars[1] = (generateScalar(rectangle.upperRightCorner(), axis));
+        rectangleAScalars[2] = (generateScalar(rectangle.lowerLeftCorner(), axis));
+        rectangleAScalars[3] = (generateScalar(rectangle.lowerRightCorner(), axis));
 
         //Project the corners of the current Rectangle on to the Axis and
         //get a scalar value of that project we can then use for comparison
-        std::vector<int>  aRectangleBScalars;
-        aRectangleBScalars.resize(4);
-        aRectangleBScalars[0] = (GenerateScalar(UpperLeftCorner(), aAxis));
-        aRectangleBScalars[1] = (GenerateScalar(UpperRightCorner(), aAxis));
-        aRectangleBScalars[2] = (GenerateScalar(LowerLeftCorner(), aAxis));
-        aRectangleBScalars[3] = (GenerateScalar(LowerRightCorner(), aAxis));
+        std::vector<int>  rectangleBScalars;
+        rectangleBScalars.resize(4);
+        rectangleBScalars[0] = (generateScalar(upperLeftCorner(), axis));
+        rectangleBScalars[1] = (generateScalar(upperRightCorner(), axis));
+        rectangleBScalars[2] = (generateScalar(lowerLeftCorner(), axis));
+        rectangleBScalars[3] = (generateScalar(lowerRightCorner(), axis));
 
         //Get the Maximum and Minium Scalar values for each of the Rectangles
-        int aRectangleAMinimum = *min_element(aRectangleAScalars.begin(), aRectangleAScalars.end());
-        int aRectangleAMaximum = *max_element(aRectangleAScalars.begin(), aRectangleAScalars.end());
-        int aRectangleBMinimum = *min_element(aRectangleBScalars.begin(), aRectangleBScalars.end());;
-        int aRectangleBMaximum = *max_element(aRectangleBScalars.begin(), aRectangleBScalars.end());;
+        int rectangleAMinimum = *min_element(rectangleAScalars.begin(), rectangleAScalars.end());
+        int rectangleAMaximum = *max_element(rectangleAScalars.begin(), rectangleAScalars.end());
+        int rectangleBMinimum = *min_element(rectangleBScalars.begin(), rectangleBScalars.end());;
+        int rectangleBMaximum = *max_element(rectangleBScalars.begin(), rectangleBScalars.end());;
 
         //If we have overlaps between the Rectangles (i.e. Min of B is less than Max of A)
         //then we are detecting a collision between the rectangles on this Axis
-        if (aRectangleBMinimum <= aRectangleAMaximum && aRectangleBMaximum >= aRectangleAMaximum)
+        if (rectangleBMinimum <= rectangleAMaximum && rectangleBMaximum >= rectangleAMaximum)
         {
             return true;
         }
-        else if (aRectangleAMinimum <= aRectangleBMaximum && aRectangleAMaximum >= aRectangleBMaximum)
+        else if (rectangleAMinimum <= rectangleBMaximum && rectangleAMaximum >= rectangleBMaximum)
         {
             return true;
         }
@@ -115,77 +115,77 @@ public:
     /// Generates a scalar value that can be used to compare where corners of 
     /// a rectangle have been projected onto a particular axis. 
     /// </summary>
-    /// <param name="theRectangleCorner"></param>
-    /// <param name="theAxis"></param>
+    /// <param name="rectangleCorner"></param>
+    /// <param name="axis"></param>
     /// <returns></returns>
-    int GenerateScalar(sf::Vector2f theRectangleCorner, sf::Vector2f theAxis)
+    int generateScalar(sf::Vector2f rectangleCorner, sf::Vector2f axis)
     {
         //Using the formula for Vector projection. Take the corner being passed in
         //and project it onto the given Axis
-        float aNumerator = (theRectangleCorner.x * theAxis.x) + (theRectangleCorner.y * theAxis.y);
-        float aDenominator = (theAxis.x * theAxis.x) + (theAxis.y * theAxis.y);
-        float aDivisionResult = aNumerator / aDenominator;
-        sf::Vector2f aCornerProjected = sf::Vector2f(aDivisionResult * theAxis.x, aDivisionResult * theAxis.y);
+        float numerator = (rectangleCorner.x * axis.x) + (rectangleCorner.y * axis.y);
+        float denominator = (axis.x * axis.x) + (axis.y * axis.y);
+        float divisionResult = numerator / denominator;
+        sf::Vector2f cornerProjected = sf::Vector2f(divisionResult * axis.x, divisionResult * axis.y);
 
         //Now that we have our projected Vector, calculate a scalar of that projection
         //that can be used to more easily do comparisons
-        float aScalar = (theAxis.x * aCornerProjected.x) + (theAxis.y * aCornerProjected.y);
-        return (int)aScalar;
+        float scalar = (axis.x * cornerProjected.x) + (axis.y * cornerProjected.y);
+        return (int)scalar;
     }
 
     /// <summary>
     /// Rotate a point from a given location and adjust using the Origin we
     /// are rotating around
     /// </summary>
-    /// <param name="thePoint"></param>
-    /// <param name="theOrigin"></param>
-    /// <param name="theRotation"></param>
+    /// <param name="point"></param>
+    /// <param name="originV"></param>
+    /// <param name="rotationVal"></param>
     /// <returns></returns>
-    sf::Vector2f RotatePoint(sf::Vector2f thePoint, sf::Vector2f theOrigin, float theRotation)
+    sf::Vector2f rotatePoint(sf::Vector2f point, sf::Vector2f originV, float rotationVal)
     {
         return sf::Vector2f(
-            (float)(theOrigin.x + (thePoint.x - theOrigin.x) * cos(theRotation)
-                - (thePoint.y - theOrigin.y) * sin(theRotation)),
+            (float)(originV.x + (point.x - originV.x) * cos(rotationVal)
+                - (point.y - originV.y) * sin(rotationVal)),
 
-            (float)(theOrigin.y + (thePoint.y - theOrigin.y) * cos(theRotation)
-                + (thePoint.x - theOrigin.x) * sin(theRotation))
+            (float)(originV.y + (point.y - originV.y) * cos(rotationVal)
+                + (point.x - originV.x) * sin(rotationVal))
         );
     }
 
-    sf::Vector2f UpperLeftCorner()
+    sf::Vector2f upperLeftCorner()
     {
-        sf::Vector2f aUpperLeft = sf::Vector2f(CollisionRectangle.left, CollisionRectangle.top);
-        aUpperLeft = RotatePoint(aUpperLeft, aUpperLeft + Origin, Rotation);
-        return aUpperLeft;
+        sf::Vector2f upperLeft = sf::Vector2f(collisionRectangle.left, collisionRectangle.top);
+        upperLeft = rotatePoint(upperLeft, upperLeft + origin, rotation);
+        return upperLeft;
     }
 
-    sf::Vector2f UpperRightCorner()
+    sf::Vector2f upperRightCorner()
     {
-        sf::Vector2f aUpperRight = sf::Vector2f(CollisionRectangle.left + CollisionRectangle.width, CollisionRectangle.top);
-        aUpperRight = RotatePoint(aUpperRight, aUpperRight + sf::Vector2f(-Origin.x, Origin.y), Rotation);
-        return aUpperRight;
+        sf::Vector2f upperRight = sf::Vector2f(collisionRectangle.left + collisionRectangle.width, collisionRectangle.top);
+        upperRight = rotatePoint(upperRight, upperRight + sf::Vector2f(-origin.x, origin.y), rotation);
+        return upperRight;
     }
 
-    sf::Vector2f LowerLeftCorner()
+    sf::Vector2f lowerLeftCorner()
     {
-        sf::Vector2f aLowerLeft = sf::Vector2f(CollisionRectangle.left, CollisionRectangle.top + CollisionRectangle.height);
-        aLowerLeft = RotatePoint(aLowerLeft, aLowerLeft + sf::Vector2f(Origin.x, -Origin.y), Rotation);
-        return aLowerLeft;
+        sf::Vector2f lowerLeft = sf::Vector2f(collisionRectangle.left, collisionRectangle.top + collisionRectangle.height);
+        lowerLeft = rotatePoint(lowerLeft, lowerLeft + sf::Vector2f(origin.x, -origin.y), rotation);
+        return lowerLeft;
     }
 
-    sf::Vector2f LowerRightCorner()
+    sf::Vector2f lowerRightCorner()
     {
-        sf::Vector2f aLowerRight = sf::Vector2f(CollisionRectangle.left + CollisionRectangle.width, CollisionRectangle.top + CollisionRectangle.height);
-        aLowerRight = RotatePoint(aLowerRight, aLowerRight + sf::Vector2f(-Origin.x, -Origin.y), Rotation);
-        return aLowerRight;
+        sf::Vector2f lowerRight = sf::Vector2f(collisionRectangle.left + collisionRectangle.width, collisionRectangle.top + collisionRectangle.height);
+        lowerRight = rotatePoint(lowerRight, lowerRight + sf::Vector2f(-origin.x, -origin.y), rotation);
+        return lowerRight;
     }
 
-    int getX() { return CollisionRectangle.left; }
+    int getX() { return collisionRectangle.left; }
 
-    int getY() { return CollisionRectangle.top; }
+    int getY() { return collisionRectangle.top; }
 
-    int getWidth() { return CollisionRectangle.width; }
+    int getWidth() { return collisionRectangle.width; }
 
-    int getHeight() { return CollisionRectangle.height; }
+    int getHeight() { return collisionRectangle.height; }
 };
 
