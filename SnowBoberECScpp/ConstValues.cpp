@@ -31,8 +31,8 @@ const float ConstValues::RAIL_WIDTH = 0.6f;
 const float ConstValues::RAIL_HEIGHT = 0.9f;
 const float ConstValues::GRID_WIDTH = 0.6f;
 const float ConstValues::GRID_HEIGHT = 0.6f;
-const float ConstValues::SCORE_WIDTH = 1.f;
-const float ConstValues::SCORE_HEIGHT = V_HEIGHT;
+const float ConstValues::SCORE_WIDTH = 0.1f;
+const float ConstValues::SCORE_HEIGHT = 10.f;
 const float ConstValues::HEART_WIDTH = 0.15f;
 const float ConstValues::HEART_HEIGHT = 0.15f;
 

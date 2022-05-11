@@ -14,6 +14,7 @@
 #include "PlayerCollisionSystem.h"
 #include "GameOverSystem.h"
 #include "RailSystem.h"
+#include "ScoreRenderSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -157,6 +158,7 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addSystem(std::make_unique<GameOverSystem>(this));
 
     gameplayECS.addRenderSystem(std::make_unique<RenderSystem>(window));
+    gameplayECS.addRenderSystem(std::make_unique<ScoreRenderSystem>(window));
 
     Entity background1 = 0;
     sf::Vector2u size = texturesManager.background.getSize();
@@ -172,15 +174,15 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addComponentToEntity<Position>(background2, Position(ConstValues::V_WIDTH, 0));
     gameplayECS.addComponentToEntity<Move>(background2, Move(-2));
 
-    int life1 = 16;
+    Entity life1 = 16;
     gameplayECS.addComponentToEntity(life1, Position(ConstValues::HEART_POSITION_X_1, ConstValues::HEART_POSITION_Y));
     gameplayECS.addComponentToEntity(life1, Visual(texturesManager.heart, ConstValues::HEART_WIDTH, ConstValues::HEART_HEIGHT));
 
-    int life2 = 17;
+    Entity life2 = 17;
     gameplayECS.addComponentToEntity(life2, Position(ConstValues::HEART_POSITION_X_2, ConstValues::HEART_POSITION_Y));
     gameplayECS.addComponentToEntity(life2, Visual(texturesManager.heart, ConstValues::HEART_WIDTH, ConstValues::HEART_HEIGHT));
 
-    int life3 = 18;
+    Entity life3 = 18;
     gameplayECS.addComponentToEntity(life3, Position(ConstValues::HEART_POSITION_X_3, ConstValues::HEART_POSITION_Y));
     gameplayECS.addComponentToEntity(life3, Visual(texturesManager.heart, ConstValues::HEART_WIDTH, ConstValues::HEART_HEIGHT));
 
@@ -197,6 +199,11 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.addComponentToEntity<Collision>(player, Collision(ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT, ObstacleType::PLAYER));
     gameplayECS.addComponentToEntity<Score>(player, Score(0));
     gameplayECS.addComponentToEntity<Lives>(player, Lives(lives));
+
+    Entity scoreLabel = 2;
+    gameplayECS.addComponentToEntity<Position>(scoreLabel, Position(ConstValues::SCORE_POSITION_X, ConstValues::SCORE_POSITION_Y));
+    gameplayECS.addComponentToEntity<ScoreBind>(scoreLabel, ScoreBind(player));
+
 }
 
 void Game::createGameOverWorld() {

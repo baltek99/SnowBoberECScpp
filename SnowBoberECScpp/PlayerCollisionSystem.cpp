@@ -31,7 +31,6 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
             score.score++;
             world->killEntity(cr.collidingEntityId);
             world->removeComponentFromEntity<CollisionResponse>(entity);
-            printf("Score \n");
         }
         else if (cr.obstacle == ObstacleType::BOX || (cr.obstacle == ObstacleType::RAIL && (pc.playerState == PlayerState::IDLE || pc.playerState == PlayerState::CROUCH))) {
             removeLifeOrKill(world, entity, liv, score.score);
@@ -42,7 +41,6 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
             pc.playerState = PlayerState::SLIDING;
             world->addComponentToEntity<Visual>(entity, Visual(textures->boberSlide, ConstValues::BOBER_ON_RAIL_WIDTH, ConstValues::BOBER_ON_RAIL_HEIGHT));
             world->removeComponentFromEntity<Collision>(cr.collidingEntityId);
-            //world->removeComponentFromEntity<CollisionResponse>(entity);
         }
         else if (cr.obstacle == ObstacleType::GRID) {
             if (pc.playerState != PlayerState::CROUCH) {

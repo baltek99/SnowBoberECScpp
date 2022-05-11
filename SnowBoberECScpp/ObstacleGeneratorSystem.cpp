@@ -35,16 +35,16 @@ void ObstacleGeneratorSystem::update(long gameFrame, float delta, World* world) 
 
         if (x < 333) {
             createBox(world);
-            createScorePoint(world, int(ConstValues::V_WIDTH) + ConstValues::BOX_WIDTH + ConstValues::BOBER_IN_JUMP_WIDTH);
+            createScorePoint(world, int(ConstValues::V_WIDTH) + 300);
         }
         else if (x < 666) {
             createGridFlag(world);
             createGridStick(world);
-            createScorePoint(world, int(ConstValues::V_WIDTH) + ConstValues::GRID_WIDTH + ConstValues::BOBER_CROUCH_WIDTH);
+            createScorePoint(world, int(ConstValues::V_WIDTH) + 500);
         }
         else {
             createRail(world);
-            createScorePoint(world, int(ConstValues::V_WIDTH) + ConstValues::RAIL_WIDTH + ConstValues::BOBER_DEFAULT_WIDTH);
+            createScorePoint(world, int(ConstValues::V_WIDTH) + 550);
         }
     }
 }
@@ -79,6 +79,7 @@ void ObstacleGeneratorSystem::createBox(World* world) {
 
 void ObstacleGeneratorSystem::createScorePoint(World* world, int positionX) {
     world->addComponentToEntity<Position>(scoreMin + current, Position(positionX, 0));
+    world->addComponentToEntity<Visual>(scoreMin + current, Visual(textures->heart, ConstValues::SCORE_WIDTH, ConstValues::SCORE_HEIGHT, false));
     world->addComponentToEntity<Move>(scoreMin + current, Move(initialSpeed));
     world->addComponentToEntity<Collision>(scoreMin + current, Collision(int(ConstValues::SCORE_WIDTH), int(ConstValues::SCORE_HEIGHT), ObstacleType::SCORE_POINT));
 }

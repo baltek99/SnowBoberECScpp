@@ -182,6 +182,7 @@
     <ClCompile Include="RotatedRectangle.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="ScoreBind.cpp" />
+    <ClCompile Include="ScoreRenderSystem.cpp" />
     <ClCompile Include="SnowBoberECScpp.cpp" />
     <ClCompile Include="SpeedSystem.cpp" />
     <ClCompile Include="TextField.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="RotatedRectangle.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="ScoreBind.h" />
+    <ClInclude Include="ScoreRenderSystem.h" />
     <ClInclude Include="SpeedSystem.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="TextField.h" />
