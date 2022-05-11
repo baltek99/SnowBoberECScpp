@@ -164,6 +164,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOverSystem.cpp" />
     <ClCompile Include="HighScores.cpp" />
+    <ClCompile Include="HighScoresRenderSystem.cpp" />
     <ClCompile Include="ImmortalSystem.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="GameOverSystem.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HighScores.h" />
+    <ClInclude Include="HighScoresRenderSystem.h" />
     <ClInclude Include="ImmortalSystem.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Jump.h" />

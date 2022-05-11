@@ -16,6 +16,7 @@
 #include "RailSystem.h"
 #include "ScoreRenderSystem.h"
 #include "ResultRenderSystem.h"
+#include "HighScoresRenderSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -214,6 +215,8 @@ void Game::createGameOverWorld() {
     gameOverECS.resetWorld();
     gameFrame = 0;
 
+    highScores.addResult(playerName, playerResult);
+
     gameOverECS.addRenderSystem(std::make_unique<RenderSystem>(window));
     gameOverECS.addRenderSystem(std::make_unique<ResultRenderSystem>(window));
 
@@ -231,7 +234,24 @@ void Game::createGameOverWorld() {
     gameOverECS.addComponentToEntity<Position>(result, Position(300, 500));
 }
 
-void Game::createHighScoreWorld() {}
+void Game::createHighScoreWorld() {
+    highScoresECS.resetWorld();
+    gameFrame = 0;
+
+    highScoresECS.addRenderSystem(std::make_unique<RenderSystem>(window));
+    highScoresECS.addRenderSystem(std::make_unique<HighScoresRenderSystem>(window));
+
+    int size = highScores.scores.size();
+    if (size > 0) {
+        int inc = ConstValues::V_HEIGHT / size;
+
+        for (int i = size - 1; i >= 0; i--) {
+            highScoresECS.addComponentToEntity<ResultBind>(i, highScores.scores.at(i));
+            highScoresECS.addComponentToEntity<Score>(i, Score(size - i));
+            highScoresECS.addComponentToEntity<Position>(i, Position(350, ConstValues::V_HEIGHT - (i + 1) * inc + 25));
+        }
+    }
+}
 
 GameState Game::updateState(GameState state, long frame, float delta) {
     return GameState::GAMEPLAY;

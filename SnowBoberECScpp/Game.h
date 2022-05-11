@@ -5,6 +5,7 @@
 #include "World.h"
 #include "TexturesManager.h"
 #include "InputManager.h"
+#include "HighScores.h"
 
 class Game
 {
@@ -22,6 +23,7 @@ public:
     TexturesManager texturesManager;
     InputManager inputManager;
 
+    HighScores highScores;
     GameState gameState;
     bool gameOver;
 	long gameFrame;
