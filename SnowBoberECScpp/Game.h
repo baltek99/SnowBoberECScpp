@@ -14,6 +14,7 @@ public:
 
 	sf::RenderWindow window;
 	sf::View view;
+    sf::Font boxFont;
 
     World mainMenuECS;
     World gameplayECS;

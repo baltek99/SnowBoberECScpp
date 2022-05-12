@@ -17,6 +17,8 @@
 #include "ScoreRenderSystem.h"
 #include "ResultRenderSystem.h"
 #include "HighScoresRenderSystem.h"
+#include "TextBoxRenderSystem.h"
+#include "TextBoxInputSystem.h"
 
 Game::Game() {
     window.create(sf::VideoMode(unsigned int(ConstValues::V_WIDTH), unsigned int(ConstValues::V_HEIGHT)), "SnowBober");
@@ -28,19 +30,28 @@ Game::Game() {
     gameOver = false;
     gameState = GameState::MAIN_MENU;
 
+    deltaTime = 0.f;
+    playerResult = 0;
+    result = 0;
+
+    highScores.readHighScores();
+    boxFont.loadFromFile("assets/cour.ttf");
+
     mainMenuECS.fillWorld();
     highScoresECS.fillWorld();
     gameplayECS.fillWorld();
     gameOverECS.fillWorld();
 
-    createMainMenuWorld();
-    playerName = "Bober";
+    //createMainMenuWorld();
+    //playerName = "Bober";
 }
 
 void Game::gameLoop() {
     int fps = 100;
     std::chrono::milliseconds timestep = std::chrono::milliseconds(1000 / fps);
     std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+
+    createMainMenuWorld();
 
     while (window.isOpen())
     {
@@ -132,8 +143,12 @@ void Game::renderWorld() {
 void Game::createMainMenuWorld() { 
     mainMenuECS.resetWorld();
     gameFrame = 0;
+    inputManager.clear(inputManager.charsTyped);
+
+    mainMenuECS.addSystem(std::make_unique<TextBoxInputSystem>(&inputManager, this));
 
     mainMenuECS.addRenderSystem(std::make_unique<RenderSystem>(window));
+    mainMenuECS.addRenderSystem(std::make_unique<TextBoxRenderSystem>(window));
 
     Entity background = 0;
     sf::Vector2u size = texturesManager.start.getSize();
@@ -142,6 +157,10 @@ void Game::createMainMenuWorld() {
 
     mainMenuECS.addComponentToEntity<Visual>(background, Visual(texturesManager.start, scaleX, scaleY));
     mainMenuECS.addComponentToEntity<Position>(background, Position(0, 0));
+
+    Entity textBox = 1;
+    mainMenuECS.addComponentToEntity<TextField>(textBox, TextField(boxFont));
+    mainMenuECS.addComponentToEntity<Position>(textBox, Position(300, 450));
 }
 
 void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
@@ -216,6 +235,7 @@ void Game::createGameOverWorld() {
     gameFrame = 0;
 
     highScores.addResult(playerName, playerResult);
+    highScores.writeHighScores();
 
     gameOverECS.addRenderSystem(std::make_unique<RenderSystem>(window));
     gameOverECS.addRenderSystem(std::make_unique<ResultRenderSystem>(window));
@@ -229,7 +249,7 @@ void Game::createGameOverWorld() {
     gameOverECS.addComponentToEntity<Position>(background, Position(0, 0));
 
     Entity result = 1;
-    gameOverECS.addComponentToEntity<TextField>(result, TextField(playerName));
+    gameOverECS.addComponentToEntity<TextField>(result, TextField(playerName, boxFont));
     gameOverECS.addComponentToEntity<Score>(result, Score(playerResult));
     gameOverECS.addComponentToEntity<Position>(result, Position(300, 500));
 }
@@ -248,7 +268,7 @@ void Game::createHighScoreWorld() {
         for (int i = size - 1; i >= 0; i--) {
             highScoresECS.addComponentToEntity<ResultBind>(i, highScores.scores.at(i));
             highScoresECS.addComponentToEntity<Score>(i, Score(size - i));
-            highScoresECS.addComponentToEntity<Position>(i, Position(350, ConstValues::V_HEIGHT - (i + 1) * inc + 25));
+            highScoresECS.addComponentToEntity<Position>(i, Position(350, ConstValues::V_HEIGHT - (i + 1) * inc + 10));
         }
     }
 }

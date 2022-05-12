@@ -1,4 +1,21 @@
-﻿  SnowBoberECScpp.cpp
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\SnowBoberECScpp.cpp(28,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\SnowBoberECScpp.cpp(29,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  SnowBoberECScpp.vcxproj -> C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\x64\Debug\SnowBoberECScpp.exe
+﻿  Game.cpp
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(188,83): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(192,100): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(192,67): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(196,100): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(196,67): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(200,100): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(200,67): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(210,117): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(210,78): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(213,114): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(213,80): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(218,113): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(218,82): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(254,40): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(256,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(261,113): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  TextField.cpp
+C:\Users\natal\OneDrive\Pulpit\SnowBoberECScpp\SnowBoberECScpp\TextField.cpp(7,85): error C2530: 'TextField::font': references must be initialized
+  World.cpp
+  Generating Code...

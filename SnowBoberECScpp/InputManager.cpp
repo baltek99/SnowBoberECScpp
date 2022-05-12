@@ -27,8 +27,10 @@ void InputManager::update(const sf::Event& event) {
 		pressed = false;
 		justPressed = false;
 		released = true;
-	} 
-	
+	}
+	else if (event.type == sf::Event::TextEntered) {
+		charsTyped.push(event.text.unicode);
+	}
 }
 
 void InputManager::update() {
@@ -47,4 +49,9 @@ bool InputManager::isKeyPressed(sf::Keyboard::Key key) {
 
 bool InputManager::isKeyReleased(sf::Keyboard::Key key) {
 	return previousKey == key && released;
+}
+
+void InputManager::clear(std::queue<int>& q) {
+	std::queue<int> empty;
+	std::swap(q, empty);
 }

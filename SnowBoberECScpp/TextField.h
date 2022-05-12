@@ -1,13 +1,16 @@
 #pragma once
 #include "Component.h"
+#include "TextBox.h"
 #include <string>
 
 struct TextField : public Component {
 public:
 	std::string text;
+	TextBox textBox;
+	sf::Font& font;
 
-	TextField();
+	TextField(sf::Font& font_);
 
-	TextField(std::string text_);
+	TextField(std::string text_, sf::Font& font_);
 };
 
