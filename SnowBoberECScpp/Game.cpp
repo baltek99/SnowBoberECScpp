@@ -69,14 +69,9 @@ void Game::gameLoop() {
                 resizeView(window, view);
                 break;
             case sf::Event::TextEntered:
-                if (gameState == GameState::MAIN_MENU) {
-                    //textBox.typedOn(event);
-                }
+                break;
             case sf::Event::KeyPressed:
-                if (gameState == GameState::GAMEPLAY) {
-                    
-                }
-                else if (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER) {
+                if (gameState == GameState::MAIN_MENU || gameState == GameState::GAME_OVER) {
                     if (event.key.code == sf::Keyboard::Tab) {
                         gameState = GameState::HIGH_SCORES;
                         createHighScoreWorld();
