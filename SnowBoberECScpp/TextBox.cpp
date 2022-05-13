@@ -59,9 +59,7 @@ void TextBox::draw(sf::RenderWindow& window) {
 }
 
 void TextBox::typedOn(int charTyped) {
-	printf("Char: %i \n", charTyped);
 	if (isSelected) {
-		//int charTyped = input.unicode;
 		if (charTyped < 128) {
 			if (hasLimit && text.length() <= limit) {
 				inputLogic(charTyped);

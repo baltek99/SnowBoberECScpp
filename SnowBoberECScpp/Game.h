@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "GameState.h"
 #include "World.h"
 #include "TexturesManager.h"
@@ -15,6 +16,7 @@ public:
 	sf::RenderWindow window;
 	sf::View view;
     sf::Font boxFont;
+    sf::Music gameMusic;
 
     World mainMenuECS;
     World gameplayECS;

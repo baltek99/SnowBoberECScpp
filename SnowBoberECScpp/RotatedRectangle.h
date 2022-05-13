@@ -70,4 +70,3 @@ public:
 
     int getHeight();
 };
-

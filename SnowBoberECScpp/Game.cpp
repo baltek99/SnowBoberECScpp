@@ -34,6 +34,9 @@ Game::Game() {
     playerResult = 0;
     result = 0;
 
+    gameMusic.openFromFile("assets/boberMusic.wav");
+    gameMusic.setLoop(true);
+
     highScores.readHighScores();
     boxFont.loadFromFile("assets/cour.ttf");
 
@@ -41,9 +44,6 @@ Game::Game() {
     highScoresECS.fillWorld();
     gameplayECS.fillWorld();
     gameOverECS.fillWorld();
-
-    //createMainMenuWorld();
-    //playerName = "Bober";
 }
 
 void Game::gameLoop() {
@@ -76,16 +76,34 @@ void Game::gameLoop() {
                         gameState = GameState::HIGH_SCORES;
                         createHighScoreWorld();
                     }
-                    else if ((gameState == GameState::MAIN_MENU && event.key.code == sf::Keyboard::Enter) || gameState == GameState::GAME_OVER) {
+                    else if ((gameState == GameState::MAIN_MENU && event.key.code == sf::Keyboard::Enter && playerName != "") || gameState == GameState::GAME_OVER) {
                         gameState = GameState::GAMEPLAY;
                         createGameWorld(playerName, event);
-                    }
+                    }                    
                 }
                 else if (gameState == GameState::HIGH_SCORES) {
                     if (event.key.code == sf::Keyboard::Tab) {
                         gameState = GameState::MAIN_MENU;
                         createMainMenuWorld();
                     }
+                }
+                else if (gameState == GameState::GAMEPLAY && event.key.code == sf::Keyboard::Escape) {
+                    gameState = GameState::PAUSE;
+                    gameMusic.pause();
+                }
+                else if (gameState == GameState::PAUSE) {
+                    switch (event.key.code)
+                    {
+                    case sf::Keyboard::Escape:
+                        gameState = GameState::MAIN_MENU;
+                        createMainMenuWorld();
+                        gameMusic.stop();
+                        break;
+                    case sf::Keyboard::Enter:
+                        gameMusic.play();
+                        gameState = GameState::GAMEPLAY;
+                        break;
+                    }break;
                 }
                 break;
             }
@@ -96,7 +114,7 @@ void Game::gameLoop() {
 
         std::chrono::milliseconds current_ms = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
-        if (current_ms > ms + timestep) {
+        if (current_ms > ms + timestep && gameState != GameState::PAUSE) {
             gameFrame++;
             updateWorld();
             inputManager.update();
@@ -132,6 +150,7 @@ void Game::renderWorld() {
     case GameState::MAIN_MENU: mainMenuECS.updateRenderSystems(gameFrame, deltaTime); break;
     case GameState::GAMEPLAY: gameplayECS.updateRenderSystems(gameFrame, deltaTime); break;
     case GameState::GAME_OVER: gameOverECS.updateRenderSystems(gameFrame, deltaTime); break;
+    case GameState::PAUSE: gameplayECS.updateRenderSystems(gameFrame, deltaTime); break;
     }
 }
 
@@ -161,6 +180,7 @@ void Game::createMainMenuWorld() {
 void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
     gameplayECS.resetWorld();
 
+    gameMusic.play();
     gameFrame = 0;
     gameOver = false;
 
@@ -228,7 +248,7 @@ void Game::createGameWorld(std::string playerName, const sf::Event& event_) {
 void Game::createGameOverWorld() {
     gameOverECS.resetWorld();
     gameFrame = 0;
-
+    gameMusic.stop();
     highScores.addResult(playerName, playerResult);
     highScores.writeHighScores();
 
