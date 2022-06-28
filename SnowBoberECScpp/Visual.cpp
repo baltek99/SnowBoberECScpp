@@ -1,6 +1,6 @@
 #include "Visual.h"
 
-Visual::Visual(const sf::Texture& texture, float scaleX, float scaleY) : Component(CmpId::VISUAL) {
+Visual::Visual(const sf::Texture& texture, float scaleX, float scaleY) {
 	sprite.setTexture(texture);
 	sprite.setOrigin(sprite.getGlobalBounds().width / 2.f, sprite.getGlobalBounds().height / 2.f);
 	sprite.setScale(scaleX, scaleY);
@@ -8,7 +8,7 @@ Visual::Visual(const sf::Texture& texture, float scaleX, float scaleY) : Compone
 	isVisible = true;
 }
 
-Visual::Visual(const sf::Texture& texture, float scaleX, float scaleY, bool visible) : Component(CmpId::VISUAL) {
+Visual::Visual(const sf::Texture& texture, float scaleX, float scaleY, bool visible) {
 	sprite.setTexture(texture);
 	sprite.setOrigin(sprite.getGlobalBounds().width / 2.f, sprite.getGlobalBounds().height / 2.f);
 	sprite.setScale(scaleX, scaleY);

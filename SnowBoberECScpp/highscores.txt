@@ -1,20 +1,6 @@
-Pan Bobr
-25
+bar
+2
+john
+2
 Bartek
-27
-Bartek
-34
-Bartek
-37
-Bartek
-37
-Bober
-41
-Bartke
-42
-Pan Bobr
-50
-Bartek
-62
-Bober
-87
+23

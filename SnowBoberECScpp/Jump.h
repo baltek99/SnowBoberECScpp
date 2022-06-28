@@ -1,7 +1,6 @@
 #pragma once
-#include "Component.h"
 
-struct Jump : public Component {
+struct Jump {
 public :
 	float startJumpFrame;
 	int jumpFrom;

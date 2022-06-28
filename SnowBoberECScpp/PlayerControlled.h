@@ -1,9 +1,8 @@
 #pragma once
-#include "Component.h"
 #include "PlayerState.h"
 #include <string>
 
-struct PlayerControlled : public Component {
+struct PlayerControlled {
 public:
 	PlayerState playerState;
 	std::string name;

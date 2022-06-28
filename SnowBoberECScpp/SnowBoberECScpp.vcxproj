@@ -159,7 +159,6 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionResponse.cpp" />
     <ClCompile Include="CollisionSystem.cpp" />
-    <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConstValues.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOverSystem.cpp" />
@@ -200,12 +199,10 @@
   <ItemGroup>
     <ClInclude Include="AllComponents.h" />
     <ClInclude Include="BackgroundGeneratorSystem.h" />
-    <ClInclude Include="CmpId.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionResponse.h" />
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="CollisionType.h" />
-    <ClInclude Include="Component.h" />
     <ClInclude Include="ConstValues.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameOverSystem.h" />

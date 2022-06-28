@@ -1,4 +1,4 @@
 #include "Position.h"
 
-Position::Position(int x_, int y_) : Component(CmpId::POSITION), x(x_), y(y_) {
+Position::Position(int x_, int y_) : x(x_), y(y_) {
 }

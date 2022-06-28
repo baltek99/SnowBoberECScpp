@@ -1,8 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Component.h"
 
-struct Visual : public Component {
+struct Visual {
 public:
 	sf::Sprite sprite;
 	bool isVisible;

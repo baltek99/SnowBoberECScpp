@@ -1,6 +1,6 @@
 #pragma once
-#include "Component.h"
-struct ScoreBind : public Component {
+
+struct ScoreBind {
 public:
 	int playerId;
 

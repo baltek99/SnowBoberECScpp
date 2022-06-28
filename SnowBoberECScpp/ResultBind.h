@@ -1,7 +1,7 @@
 #pragma once
-#include "Component.h"
 #include <string>
-struct ResultBind : public Component {
+
+struct ResultBind {
 public:
 	std::string name;
 	int score;

@@ -1,4 +1,4 @@
 #include "Move.h"
 
-Move::Move(float speed_) : Component(CmpId::MOVE), speed(speed_) {
+Move::Move(float speed_) : speed(speed_) {
 }

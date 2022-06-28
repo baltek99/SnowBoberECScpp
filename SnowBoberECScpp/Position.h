@@ -1,6 +1,6 @@
 #pragma once
-#include "Component.h"
-struct Position : public Component {
+
+struct Position {
 public :
 	int x, y;
 

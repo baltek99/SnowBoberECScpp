@@ -1,9 +1,8 @@
 #pragma once
-#include "Component.h"
 #include "TextBox.h"
 #include <string>
 
-struct TextField : public Component {
+struct TextField {
 public:
 	std::string text;
 	TextBox textBox;

@@ -1,9 +1,8 @@
 #pragma once
-#include "Component.h"
 #include "CollisionType.h"
 #include "ObstacleType.h"
 
-struct CollisionResponse : public Component {
+struct CollisionResponse {
 public:
 	int collidingEntityId;
 	CollisionType collisionType;

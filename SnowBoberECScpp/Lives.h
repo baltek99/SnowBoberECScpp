@@ -1,9 +1,8 @@
 #pragma once
-#include "Component.h"
 #include <vector>
 #include <optional>
 
-struct Lives : public Component {
+struct Lives {
 public:
 	int lives;
 	std::vector<std::optional<int>> livesIds;

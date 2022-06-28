@@ -1,10 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "Component.h"
 #include "ObstacleType.h"
 
-struct Collision : public Component {
+struct Collision {
 public:
 	int width;
 	int height;

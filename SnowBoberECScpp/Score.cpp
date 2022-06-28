@@ -1,4 +1,4 @@
 #include "Score.h"
 
-Score::Score(int score_) : Component(CmpId::SCORE), score(score_) {
+Score::Score(int score_) : score(score_) {
 }

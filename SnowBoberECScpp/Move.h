@@ -1,6 +1,6 @@
 #pragma once
-#include "Component.h"
-struct Move : public Component {
+
+struct Move {
 public :
 	float speed;
 

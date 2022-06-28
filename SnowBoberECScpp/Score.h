@@ -1,6 +1,6 @@
 #pragma once
-#include "Component.h"
-struct Score : public Component {
+
+struct Score {
 public:
 	int score;
 
