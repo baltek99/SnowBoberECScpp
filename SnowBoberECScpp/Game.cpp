@@ -276,14 +276,22 @@ void Game::createHighScoreWorld() {
     highScoresECS.addRenderSystem(std::make_unique<RenderSystem>(window));
     highScoresECS.addRenderSystem(std::make_unique<HighScoresRenderSystem>(window));
 
+    Entity background = 0;
+    sf::Vector2u sizeV = texturesManager.gameOver.getSize();
+    float scaleX = ConstValues::V_WIDTH / float(sizeV.x);
+    float scaleY = ConstValues::V_HEIGHT / float(sizeV.y);
+
+    highScoresECS.addComponentToEntity<Visual>(background, Visual(texturesManager.highScores, scaleX, scaleY));
+    highScoresECS.addComponentToEntity<Position>(background, Position(0, 0));
+
     int size = highScores.scores.size();
     if (size > 0) {
         int inc = ConstValues::V_HEIGHT / size;
 
         for (int i = size - 1; i >= 0; i--) {
-            highScoresECS.addComponentToEntity<ResultBind>(i, highScores.scores.at(i));
-            highScoresECS.addComponentToEntity<Score>(i, Score(size - i));
-            highScoresECS.addComponentToEntity<Position>(i, Position(350, ConstValues::V_HEIGHT - (i + 1) * inc + 10));
+            highScoresECS.addComponentToEntity<ResultBind>(i + 1, highScores.scores.at(i));
+            highScoresECS.addComponentToEntity<Score>(i + 1, Score(size - i));
+            highScoresECS.addComponentToEntity<Position>(i + 1, Position(350, ConstValues::V_HEIGHT - (i + 1) * inc + 10));
         }
     }
 }

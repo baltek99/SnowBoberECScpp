@@ -22,7 +22,7 @@ TexturesManager::TexturesManager() {
     background.loadFromFile("assets/background.jpg");
     start.loadFromFile("assets/start.jpg");
     gameOver.loadFromFile("assets/game-over.jpg");
-    highScores.loadFromFile("assets/start.jpg");
+    highScores.loadFromFile("assets/high-scores.jpg");
     boberStand.loadFromFile("assets/bober-stand.png");
     boberCrouch.loadFromFile("assets/bober-luzny.png");
     boberJump.loadFromFile("assets/bober-jump.png");

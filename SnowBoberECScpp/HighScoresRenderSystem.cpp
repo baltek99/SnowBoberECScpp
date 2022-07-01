@@ -5,7 +5,7 @@ HighScoresRenderSystem::HighScoresRenderSystem(sf::RenderWindow& win) : window(w
     font.loadFromFile("assets/cour.ttf");
     text.setFont(font);
     text.setCharacterSize(24);
-    text.setFillColor(sf::Color::White);
+    text.setFillColor(sf::Color::Black);
     text.setStyle(sf::Text::Bold);
 }
 
