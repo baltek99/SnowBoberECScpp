@@ -277,7 +277,7 @@ void Game::createHighScoreWorld() {
     highScoresECS.addRenderSystem(std::make_unique<HighScoresRenderSystem>(window));
 
     Entity background = 0;
-    sf::Vector2u sizeV = texturesManager.gameOver.getSize();
+    sf::Vector2u sizeV = texturesManager.highScores.getSize();
     float scaleX = ConstValues::V_WIDTH / float(sizeV.x);
     float scaleY = ConstValues::V_HEIGHT / float(sizeV.y);
 
