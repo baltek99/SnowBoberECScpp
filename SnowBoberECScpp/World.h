@@ -83,7 +83,6 @@ public :
     bool checkComponentHasValue(unsigned int entityId) {
         if (entityId > MAX_ENTITIES) return false;
         OptVec<T>& tComp = std::get<OptVec<T>>(components);
-        //printf("%u val = %d \n", entityId, tComp.at(entityId).has_value());
         return tComp.at(entityId).has_value();
     }
 
