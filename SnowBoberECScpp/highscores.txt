@@ -2,5 +2,7 @@ bar
 2
 john
 2
+bart
+6
 Bartek
 23

@@ -19,6 +19,8 @@ public:
     static sf::Texture grid;
     static sf::Texture gridStick;
     static sf::Texture heart;
+    static sf::Texture boxBroken;
+    static sf::Texture gridBroken;
 
     TexturesManager();
 };

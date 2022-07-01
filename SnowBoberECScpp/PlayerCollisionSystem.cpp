@@ -37,6 +37,9 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
             removeLifeOrKill(world, entity, liv, score.score, cr.collidingEntityId);
             pos.y = ConstValues::BOBER_DEFAULT_POSITION_Y;
             world->addComponentToEntity<Visual>(entity, Visual(textures->boberStand, ConstValues::BOBER_DEFAULT_WIDTH, ConstValues::BOBER_DEFAULT_HEIGHT));
+            if (cr.obstacle == ObstacleType::BOX) {
+                world->addComponentToEntity<Visual>(cr.collidingEntityId, Visual(textures->boxBroken, ConstValues::BOX_WIDTH, ConstValues::BOX_HEIGHT));
+            }
         }
         else if (cr.obstacle == ObstacleType::RAIL && (pc.playerState == PlayerState::JUMPING || pc.playerState == PlayerState::JUMPING_FROM_CROUCH || pc.playerState == PlayerState::JUMPING_ON_RAIL)) {
             pos.y = ConstValues::SLIDING_ON_RAIL_Y;
@@ -48,6 +51,8 @@ void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
             if (pc.playerState != PlayerState::CROUCH) {
                 removeLifeOrKill(world, entity, liv, score.score, cr.collidingEntityId);
                 pos.y = ConstValues::BOBER_DEFAULT_POSITION_Y;
+                world->addComponentToEntity<Visual>(cr.collidingEntityId - 9, Visual(textures->gridBroken, ConstValues::GRID_WIDTH, ConstValues::GRID_HEIGHT));
+                world->killEntity(cr.collidingEntityId);
             }
             else {
                 world->removeComponentFromEntity<CollisionResponse>(entity);

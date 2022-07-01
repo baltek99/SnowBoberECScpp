@@ -61,7 +61,7 @@ void ObstacleGeneratorSystem::createGridStick(World* world) {
     world->addComponentToEntity<Position>(obstacleMin + current, Position(int(ConstValues::V_WIDTH), int(ConstValues::GRID_POSITION_Y)));
     world->addComponentToEntity<Visual>(obstacleMin + current, Visual(textures->gridStick, ConstValues::GRID_WIDTH, ConstValues::GRID_HEIGHT));
     world->addComponentToEntity<Move>(obstacleMin + current, Move(initialSpeed));
-    //world->addComponentToEntity<Collision>(obstacleMin + current, Collision(0, 0, ObstacleType::GRID));
+    world->addComponentToEntity<Collision>(obstacleMin + current, Collision(int(ConstValues::GRID_WIDTH), int(ConstValues::GRID_HEIGHT), ObstacleType::GRID_STICK));
 }
 
 void ObstacleGeneratorSystem::createRail(World* world) {

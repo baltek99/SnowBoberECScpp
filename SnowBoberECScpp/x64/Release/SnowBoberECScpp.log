@@ -1,1 +1,78 @@
-﻿  SnowBoberECScpp.vcxproj -> C:\Users\natal\Desktop\SnowBoberECScpp\x64\Release\SnowBoberECScpp.exe
+﻿  BackgroundGeneratorSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\BackgroundGeneratorSystem.cpp(18,42): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Collision.cpp
+  CollisionResponse.cpp
+  CollisionSystem.cpp
+  Game.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(213,83): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(217,100): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(217,67): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(221,100): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(221,67): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(225,100): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(225,67): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(235,117): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(235,78): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(238,114): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(238,80): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(243,113): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(243,82): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(279,40): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(281,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(286,113): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  GameOverSystem.cpp
+  HighScoresRenderSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\HighScoresRenderSystem.cpp(30,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\HighScoresRenderSystem.cpp(30,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ImmortalSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ImmortalSystem.cpp(38,117): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ImmortalSystem.cpp(38,83): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+  JumpSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\JumpSystem.cpp(62,38): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\JumpSystem.cpp(69,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\JumpSystem.cpp(68,25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  MoveSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\MoveSystem.cpp(17,27): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+  ObstacleGeneratorSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(18,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(56,63): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(63,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(70,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(77,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ObstacleGeneratorSystem.cpp(84,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  PlayerCollisionSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(38,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(45,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(53,38): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+  PlayerControlledSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerControlledSystem.cpp(33,72): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerControlledSystem.cpp(37,72): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerControlledSystem.cpp(43,46): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerControlledSystem.cpp(44,39): warning C4244: '=': conversion from 'long' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerControlledSystem.cpp(57,46): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerControlledSystem.cpp(58,39): warning C4244: '=': conversion from 'long' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerControlledSystem.cpp(64,38): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerControlledSystem.cpp(69,38): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+  PlayerNameSystem.cpp
+  RailSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\RailSystem.cpp(34,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+  RenderSystem.cpp
+  ResultRenderSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ResultRenderSystem.cpp(29,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ResultRenderSystem.cpp(29,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  ScoreRenderSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ScoreRenderSystem.cpp(31,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\ScoreRenderSystem.cpp(31,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SnowBoberECScpp.cpp
+  SpeedSystem.cpp
+  Compiling...
+  TextBoxInputSystem.cpp
+  TextBoxRenderSystem.cpp
+  TexturesManager.cpp
+  World.cpp
+  Generating code
+  80 of 2212 functions ( 3.6%) were compiled, the rest were copied from previous compilation.
+    4 functions were new in current compilation
+    49 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  SnowBoberECScpp.vcxproj -> C:\Users\natal\Desktop\SnowBoberECScpp\x64\Release\SnowBoberECScpp.exe

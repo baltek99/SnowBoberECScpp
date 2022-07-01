@@ -15,6 +15,8 @@ sf::Texture TexturesManager::pipe;
 sf::Texture TexturesManager::grid;
 sf::Texture TexturesManager::gridStick;
 sf::Texture TexturesManager::heart;
+sf::Texture TexturesManager::boxBroken;
+sf::Texture TexturesManager::gridBroken;
 
 TexturesManager::TexturesManager() {
     background.loadFromFile("assets/background.jpg");
@@ -32,4 +34,6 @@ TexturesManager::TexturesManager() {
     grid.loadFromFile("assets/grid.png");
     gridStick.loadFromFile("assets/grid-stick.png");
     heart.loadFromFile("assets/heart.png");
+    boxBroken.loadFromFile("assets/box-broken.png");
+    gridBroken.loadFromFile("assets/grid-broken.png");
 }
