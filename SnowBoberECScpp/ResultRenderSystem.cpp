@@ -11,7 +11,6 @@ ResultRenderSystem::ResultRenderSystem(sf::RenderWindow& win) : window(win) {
 }
 
 void ResultRenderSystem::update(long gameFrame, float delta, World* world) {
-
     World::OptVec<Position>& posVec = world->getComponents<Position>();
     World::OptVec<Score>& scoreVec = world->getComponents<Score>();
     World::OptVec<TextField>& textVec = world->getComponents<TextField>();

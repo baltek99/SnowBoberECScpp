@@ -1,9 +1,7 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 
-class RotatedRectangle 
-{
+class RotatedRectangle {
 public:
     sf::FloatRect collisionRectangle;
     float rotation;
@@ -17,7 +15,6 @@ public:
     /// <param name="theXPositionAdjustment"></param>
     /// <param name="theYPositionAdjustment"></param>
     void changePosition(int theXPositionAdjustment, int theYPositionAdjustment);
-
 
     /// <summary>
     /// Check to see if two Rotated Rectangls have collided

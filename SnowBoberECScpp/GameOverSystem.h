@@ -12,4 +12,3 @@ public:
 
 	void update(long gameFrame, float delta, World* world);
 };
-

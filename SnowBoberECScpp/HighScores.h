@@ -17,4 +17,3 @@ public :
 private:
     static int compare(const ResultBind& bind1, const ResultBind& bind2);
 };
-

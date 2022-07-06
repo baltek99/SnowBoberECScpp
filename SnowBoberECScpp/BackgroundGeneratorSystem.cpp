@@ -3,7 +3,6 @@
 #include "ConstValues.h"
 
 void BackgroundGeneratorSystem::update(long gameFrame, float delta, World* world) {
-    
     World::OptVec<Position>& posVec = world->getComponents<Position>();
     World::OptVec<Move>& movVec = world->getComponents<Move>();
 

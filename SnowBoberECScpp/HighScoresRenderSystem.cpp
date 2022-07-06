@@ -10,7 +10,6 @@ HighScoresRenderSystem::HighScoresRenderSystem(sf::RenderWindow& win) : window(w
 }
 
 void HighScoresRenderSystem::update(long gameFrame, float delta, World* world) {
-
     World::OptVec<Position>& posVec = world->getComponents<Position>();
     World::OptVec<ResultBind>& bindVec = world->getComponents<ResultBind>();
     World::OptVec<Score>& scoreVec = world->getComponents<Score>();
@@ -31,4 +30,3 @@ void HighScoresRenderSystem::update(long gameFrame, float delta, World* world) {
         window.draw(text);
     }
 }
-

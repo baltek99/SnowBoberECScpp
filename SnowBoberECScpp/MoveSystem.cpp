@@ -13,7 +13,6 @@ void MoveSystem::update(long gameFrame, float delta, World* world) {
         Position& pos = posVec.at(entity).value();
         Move& mov = visVec.at(entity).value();
 
-        //printf("%i \n", pos.x);
         pos.x += mov.speed;
     }
 }

@@ -17,7 +17,6 @@ public:
 
     static const int NUMBER_OF_FRAMES_TO_INCREMENT;
 
-    // TEXTURES REGION
     static const float BOBER_DEFAULT_WIDTH;
     static const float BOBER_DEFAULT_HEIGHT;
     static const float BOBER_ON_RAIL_WIDTH;

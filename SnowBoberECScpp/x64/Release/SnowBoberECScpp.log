@@ -15,12 +15,18 @@ C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(243,82): warning
 C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(287,40): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(289,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\Game.cpp(294,117): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  HighScoresRenderSystem.cpp
-C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\HighScoresRenderSystem.cpp(30,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\HighScoresRenderSystem.cpp(30,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  GameOverSystem.cpp
+  MoveSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\MoveSystem.cpp(16,27): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+  PlayerCollisionSystem.cpp
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(38,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(45,34): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\natal\Desktop\SnowBoberECScpp\SnowBoberECScpp\PlayerCollisionSystem.cpp(53,38): warning C4244: '=': conversion from 'const float' to 'int', possible loss of data
+  SnowBoberECScpp.cpp
+  TextBoxInputSystem.cpp
   Generating code
   1 of 2212 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SnowBoberECScpp.vcxproj -> C:\Users\natal\Desktop\SnowBoberECScpp\x64\Release\SnowBoberECScpp.exe

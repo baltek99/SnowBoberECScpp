@@ -8,7 +8,6 @@ PlayerCollisionSystem::PlayerCollisionSystem(const TexturesManager* texManager, 
 }
 
 void PlayerCollisionSystem::update(long gameFrame, float delta, World* world) {
-
     World::OptVec<PlayerControlled>& pcVec = world->getComponents<PlayerControlled>();
     World::OptVec<CollisionResponse>& crVec = world->getComponents<CollisionResponse>();
     World::OptVec<Position>& posVec = world->getComponents<Position>();
@@ -76,4 +75,3 @@ void PlayerCollisionSystem::removeLifeOrKill(World* world, int entity, Lives& li
         world->removeComponentFromEntity<Collision>(obstacleId);
     }
 }
-

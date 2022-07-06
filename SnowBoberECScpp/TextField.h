@@ -12,4 +12,3 @@ public:
 
 	TextField(std::string text_, sf::Font& font_);
 };
-

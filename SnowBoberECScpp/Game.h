@@ -51,8 +51,5 @@ public:
 
     void gameLoop();
 
-    GameState updateState(GameState state, long frame, float delta);
-
     void resizeView(sf::RenderWindow& window_, sf::View& view_);
 };
-

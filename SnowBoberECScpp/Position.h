@@ -6,4 +6,3 @@ public :
 
 	Position(int x_, int y_);
 };
-

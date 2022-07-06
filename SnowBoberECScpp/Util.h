@@ -1,6 +1,5 @@
 #pragma once
-class Util
-{
+class Util {
 public:
     /**
      * Linearly interpolates a value between two floats
@@ -22,4 +21,3 @@ public:
 
     static float easeInQuint(float x);
 };
-

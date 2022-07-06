@@ -15,7 +15,6 @@ const float ConstValues::BOBER_MAX_X = V_WIDTH - 200.f;
 
 const int ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT = 1000;
 
-// TEXTURES REGION
 const float ConstValues::BOBER_DEFAULT_WIDTH = 0.8f;
 const float ConstValues::BOBER_DEFAULT_HEIGHT = 0.8f;
 const float ConstValues::BOBER_ON_RAIL_WIDTH = 0.75f;

@@ -8,7 +8,6 @@ ImmortalSystem::ImmortalSystem() {
 }
 
 void ImmortalSystem::update(long gameFrame, float delta, World* world) {
-
     World::OptVec<Collision>& colVec = world->getComponents<Collision>();
     World::OptVec<Visual>& visVec = world->getComponents<Visual>();
 
@@ -41,5 +40,4 @@ void ImmortalSystem::update(long gameFrame, float delta, World* world) {
             }
         }
     }
-
 }

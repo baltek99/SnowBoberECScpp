@@ -6,4 +6,3 @@ public:
 
 	ScoreBind(int playerId_);
 };
-

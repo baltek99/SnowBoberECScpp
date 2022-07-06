@@ -6,7 +6,6 @@
 RailSystem::RailSystem(const TexturesManager* texManager) : textures(texManager) {}
 
 void RailSystem::update(long gameFrame, float delta, World* world) {
-
     World::OptVec<CollisionResponse>& crVec = world->getComponents<CollisionResponse>();
     World::OptVec<Visual>& visVec = world->getComponents<Visual>();
     World::OptVec<Position>& posVec = world->getComponents<Position>();
@@ -27,7 +26,6 @@ void RailSystem::update(long gameFrame, float delta, World* world) {
         int playerX = pos.x;
 
         if (pc.playerState == PlayerState::SLIDING && obstacleX < playerX && std::abs(playerX - obstacleX) >= ConstValues::RAIL_AND_BOBER_DIFFERENCE) {
-            //world->removeComponentFromEntity<Collision>(cr.collidingEntityId);
             world->removeComponentFromEntity<CollisionResponse>(cr.collidingEntityId);
             world->removeComponentFromEntity<CollisionResponse>(entity);
             pc.playerState = PlayerState::IDLE;

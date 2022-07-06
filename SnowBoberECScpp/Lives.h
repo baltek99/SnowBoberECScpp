@@ -9,4 +9,3 @@ public:
 
 	Lives(std::vector<std::optional<int>> livesIds_);
 };
-

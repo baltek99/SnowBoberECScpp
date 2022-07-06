@@ -11,7 +11,6 @@ ScoreRenderSystem::ScoreRenderSystem(sf::RenderWindow& win) : window(win) {
 }
 
 void ScoreRenderSystem::update(long gameFrame, float delta, World* world) {
-
     World::OptVec<Position>& posVec = world->getComponents<Position>();
     World::OptVec<ScoreBind>& sbVec = world->getComponents<ScoreBind>();
 

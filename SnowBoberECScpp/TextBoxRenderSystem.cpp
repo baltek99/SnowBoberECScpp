@@ -2,7 +2,6 @@
 #include "World.h"
 
 TextBoxRenderSystem::TextBoxRenderSystem(sf::RenderWindow& win) : window(win) {
-
 }
 
 void TextBoxRenderSystem::update(long gameFrame, float delta, World* world) {

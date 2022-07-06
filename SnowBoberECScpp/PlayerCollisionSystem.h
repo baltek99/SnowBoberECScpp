@@ -16,4 +16,3 @@ private :
 
 	void removeLifeOrKill(World* world, int entity, Lives& liv, int score, int obstacleId);
 };
-

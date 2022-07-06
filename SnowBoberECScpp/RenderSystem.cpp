@@ -2,7 +2,6 @@
 #include "World.h"
 
 RenderSystem::RenderSystem(sf::RenderWindow& win) : window(win) {
-
 }
 
 void RenderSystem::update(long gameFrame, float delta, World* world) {

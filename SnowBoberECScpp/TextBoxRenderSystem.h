@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "System.h"
+
 class TextBoxRenderSystem : public System {
 public:
 	sf::RenderWindow& window;
@@ -9,4 +10,3 @@ public:
 
 	void update(long gameFrame, float delta, World* world);
 };
-

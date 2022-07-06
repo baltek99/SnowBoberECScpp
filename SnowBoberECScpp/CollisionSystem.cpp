@@ -44,7 +44,6 @@ CollisionType CollisionSystem::intersects(const Position& posA, Collision& colA,
     rshA.setSize(sf::Vector2f(visA.sprite.getLocalBounds().width * visA.sprite.getScale().x,
         visA.sprite.getLocalBounds().height * visA.sprite.getScale().y));
     rshA.setOrigin(rshA.getSize().x / 2, rshA.getSize().y / 2);
-    //rshA.setRotation(visA.sprite.getRotation());
     rshA.setRotation(0);
     rshA.setPosition(posA.x + rshA.getSize().x / 2, posA.y + rshA.getSize().y / 2); 
     
@@ -52,7 +51,6 @@ CollisionType CollisionSystem::intersects(const Position& posA, Collision& colA,
     rshB.setSize(sf::Vector2f(visB.sprite.getLocalBounds().width * visB.sprite.getScale().x,
         visB.sprite.getLocalBounds().height * visB.sprite.getScale().y));
     rshB.setOrigin(rshB.getSize().x / 2, rshB.getSize().y / 2);
-    //rshB.setRotation(visB.sprite.getRotation());
     rshB.setRotation(0);
     rshB.setPosition(posB.x + rshB.getSize().x / 2, posB.y + rshB.getSize().y / 2);
 

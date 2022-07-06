@@ -10,4 +10,3 @@ public:
 
 	virtual void update(long gameFrame, float delta, World* world);
 };
-

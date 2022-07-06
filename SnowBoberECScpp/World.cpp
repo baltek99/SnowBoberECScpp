@@ -1,7 +1,6 @@
 #include "World.h"
 
 World::World() {
-
 }
 
 void World::resetWorld() {
@@ -35,11 +34,9 @@ void World::updateRenderSystems(long gameFrame, float delta) {
 }
 
 void World::killAllEntities() {
-	//std::apply([this](auto&& ... args) { clearOptVec(args); }, components);
 	std::apply([this](auto&& ... args) { (clearOptVec(args), ...); }, components);
 }
 
 void World::killEntity(unsigned int entityId) {
-	//std::apply([this, entityId](auto&& ... args) { clearEntityInOptVec(args, entityId); }, components);
 	std::apply([this, entityId](auto&& ... args) { (clearEntityInOptVec(args, entityId), ...); }, components);
 }

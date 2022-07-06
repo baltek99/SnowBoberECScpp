@@ -1,8 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class TexturesManager
-{
+class TexturesManager {
 public:
     static sf::Texture background;
     static sf::Texture start;

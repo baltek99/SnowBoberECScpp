@@ -9,4 +9,3 @@ public:
 
 	PlayerControlled(PlayerState state, std::string name_);
 };
-

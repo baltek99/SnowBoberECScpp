@@ -22,20 +22,6 @@ void JumpSystem::update(long gameFrame, float delta, World* world) {
     World::OptVec<Jump>& jumpVec = world->getComponents<Jump>();
     World::OptVec<Visual>& visVec = world->getComponents<Visual>();
 
-    //if (gameFrame == ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
-    //    jumpHeight = 110;
-    //    duration = 80;
-    //    rotationSpeed = 4.5f;
-    //}
-    //else if (gameFrame == 5 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
-    //    duration = 70;
-    //    rotationSpeed = 5.5f;
-    //}
-    //else if (gameFrame == 6 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
-    //    duration = 65;
-    //    rotationSpeed = 6.f;
-    //}
-    //else if (gameFrame == 8 * ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT) {
     if (gameFrame % ConstValues::NUMBER_OF_FRAMES_TO_INCREMENT == 0) {
         duration = duration - duration / speedCount;
         rotationSpeed = rotationSpeed + rotationSpeed / speedCount;

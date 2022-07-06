@@ -5,8 +5,7 @@
 #include "System.h"
 #include <any>
 
-class World
-{
+class World {
 public :
     template<class T>
     using OptVec = std::vector<std::optional<T>>;

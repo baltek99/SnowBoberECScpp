@@ -3,7 +3,8 @@
 #include <iostream>
 #include <cassert>
 
-ResultBind::ResultBind() : name(""), score(0) {}
+ResultBind::ResultBind() : name(""), score(0) {
+}
 
 ResultBind::ResultBind(std::string name_, int score_) : name(name_), score(score_) {
 }

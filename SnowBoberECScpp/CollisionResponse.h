@@ -10,4 +10,3 @@ public:
 
 	CollisionResponse(int colEntityId, CollisionType colType, ObstacleType obsType);
 };
-

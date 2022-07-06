@@ -6,4 +6,3 @@ public:
 
 	Score(int score_);
 };
-

@@ -296,10 +296,6 @@ void Game::createHighScoreWorld() {
     }
 }
 
-GameState Game::updateState(GameState state, long frame, float delta) {
-    return GameState::GAMEPLAY;
-}
-
 void Game::resizeView(sf::RenderWindow& window_, sf::View& view_) {
     float wx = float(window_.getSize().x);
     float wy = float(window_.getSize().y);

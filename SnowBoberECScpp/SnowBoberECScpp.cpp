@@ -3,8 +3,7 @@
 #include "Game.h"
 #include "TexturesManager.h"
 
-int main()
-{
+int main() {
     Game snowBoberGame;
 
     TexturesManager texturesManager;

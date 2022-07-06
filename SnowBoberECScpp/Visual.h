@@ -10,4 +10,3 @@ public:
 
 	Visual(const sf::Texture& texture, float scaleX, float scaleY, bool visible);
 };
-

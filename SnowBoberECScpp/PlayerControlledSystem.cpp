@@ -12,7 +12,6 @@ PlayerControlledSystem::PlayerControlledSystem(const sf::Event& event, const Tex
 }
 
 void PlayerControlledSystem::update(long gameFrame, float delta, World* world) {
-
     World::OptVec<Position>& posVec = world->getComponents<Position>();
     World::OptVec<PlayerControlled>& pcVec = world->getComponents<PlayerControlled>();
     World::OptVec<Jump>& jumpVec = world->getComponents<Jump>();
